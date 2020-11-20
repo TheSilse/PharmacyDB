@@ -6,8 +6,6 @@ namespace PharmacyDBCore.Database.Models
     public class Employee : Notify
     {
         private int _id;
-        private int _userId;
-        private User _user;
         private string _secondName;
         private string _name;
         private string _middleName;
@@ -15,26 +13,12 @@ namespace PharmacyDBCore.Database.Models
         private string _telephone;
         private decimal _salary;
 
-        public Employee()
-        {
-            _userId = 1;
-        }
         public int Id
         {
             get => _id;
             set { _id = value; OnPropertyChanged(); }
         }
 
-        public int UserId
-        {
-            get => _userId;
-            set { _userId = value; OnPropertyChanged(); }
-        }
-        public User User
-        {
-            get => _user;
-            set { _user = value; OnPropertyChanged(); }
-        }
 
         public string SecondName
         {

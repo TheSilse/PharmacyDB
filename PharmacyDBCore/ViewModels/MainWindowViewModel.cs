@@ -17,7 +17,7 @@ using PharmacyDBCore.Services;
 
 namespace PharmacyDBCore.ViewModels
 {
-    
+
 
     public class MainWindowViewModel : Notify
     {
@@ -25,6 +25,7 @@ namespace PharmacyDBCore.ViewModels
         public DataGrid DataGrid { get; set; }
         public object DataSourse { get; set; }
         public object SelectedItem { get; set; }
+        public object LastSelectedItem { get; set; }
         public LoadDataCommand LoadData => new LoadDataCommand(this);
         public UpdateDataCommand UpdateData => new UpdateDataCommand(this);
 
@@ -33,7 +34,27 @@ namespace PharmacyDBCore.ViewModels
             DataSourse = new BindingList<T>(sourceItems);
             BindingList<T> bindingList = (BindingList<T>)DataSourse;
             DataGrid.ItemsSource = bindingList;
+            DataGrid.SelectionChanged += DataGrid_SelectionChanged;
+            DataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
             ((BindingList<T>)DataSourse).ListChanged += MainWindowViewModel_ListChanged;
+        }
+
+        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header is "Appointment" || 
+                e.Column.Header is "Supplier" || 
+                e.Column.Header is "User" ||
+                e.Column.Header is "Employee" || 
+                e.Column.Header is "Client")
+                e.Column.Visibility = Visibility.Collapsed;
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((DataGrid)sender).SelectedItem != null)
+            {
+                LastSelectedItem = ((DataGrid)sender).SelectedItem;
+            }
         }
 
         public void LoadDataGrid(string tableName)
@@ -56,8 +77,8 @@ namespace PharmacyDBCore.ViewModels
 
         private void MainWindowViewModel_ListChanged(object sender, ListChangedEventArgs e)
         {
-            bool addedOrDeleted = e.ListChangedType == ListChangedType.ItemAdded ||
-                                  e.ListChangedType == ListChangedType.ItemDeleted;
+            bool added = e.ListChangedType == ListChangedType.ItemAdded;
+            bool deleted = e.ListChangedType == ListChangedType.ItemDeleted;
             bool changed = e.ListChangedType == ListChangedType.ItemChanged;
             try
             {
@@ -68,42 +89,102 @@ namespace PharmacyDBCore.ViewModels
                     {
                         case DataType.Appointments:
                             {
-                                if (addedOrDeleted)
+                                if (added)
                                 {
-
+                                    db.Appointments.UpdateRange((BindingList<Appointment>)list);
+                                }
+                                else if (deleted)
+                                {
+                                    db.Appointments.Remove((Appointment)LastSelectedItem);
                                 }
                                 else if (changed)
                                 {
-
+                                    db.Appointments.Update((Appointment)LastSelectedItem);
                                 }
                                 break;
                             }
                         case DataType.Clients:
                             {
-                                BindingList<Client> bindingList = (BindingList<Client>)sender;
+                                if (added)
+                                {
+                                    db.Clients.UpdateRange((BindingList<Client>)list);
+                                }
+                                else if (deleted)
+                                {
+                                    db.Clients.Remove((Client)LastSelectedItem);
+                                }
+                                else if (changed)
+                                {
+                                    db.Clients.Update((Client)LastSelectedItem);
+                                }
                                 break;
                             }
                         case DataType.Drugs:
                             {
-                                BindingList<Drug> bindingList = (BindingList<Drug>)sender;
+                                if (added)
+                                {
+                                    db.Drugs.UpdateRange((BindingList<Drug>)list);
+                                }
+                                else if (deleted)
+                                {
+                                    db.Drugs.Remove((Drug)LastSelectedItem);
+                                }
+                                else if (changed)
+                                {
+                                    db.Drugs.Update((Drug)LastSelectedItem);
+                                }
                                 break;
                             }
                         case DataType.Employees:
                             {
-                                BindingList<Employee> bindingList = (BindingList<Employee>)sender;
+                                if (added)
+                                {
+                                    db.Employees.UpdateRange((BindingList<Employee>)list);
+                                }
+                                else if (deleted)
+                                {
+                                    db.Employees.Remove((Employee)LastSelectedItem);
+                                }
+                                else if (changed)
+                                {
+                                    db.Employees.Update((Employee)LastSelectedItem);
+                                }
                                 break;
                             }
                         case DataType.Orders:
                             {
-                                BindingList<Order> bindingList = (BindingList<Order>)sender;
+                                if (added)
+                                {
+                                    db.Orders.UpdateRange((BindingList<Order>)list);
+                                }
+                                else if (deleted)
+                                {
+                                    db.Orders.Remove((Order)LastSelectedItem);
+                                }
+                                else if (changed)
+                                {
+                                    db.Orders.Update((Order)LastSelectedItem);
+                                }
                                 break;
                             }
                         case DataType.Suppliers:
                             {
-                                BindingList<Supplier> bindingList = (BindingList<Supplier>)sender;
+                                if (added)
+                                {
+                                    db.Suppliers.UpdateRange((BindingList<Supplier>)list);
+                                }
+                                else if (deleted)
+                                {
+                                    db.Suppliers.Remove((Supplier)LastSelectedItem);
+                                }
+                                else if (changed)
+                                {
+                                    db.Suppliers.Update((Supplier)LastSelectedItem);
+                                }
                                 break;
                             }
                     }
+                    db.SaveChanges();
                 }
 
 

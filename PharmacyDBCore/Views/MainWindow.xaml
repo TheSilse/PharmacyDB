@@ -42,7 +42,7 @@
             </ToolBar>
         </StackPanel>
         <TabControl Grid.Row="1">
-            <TabItem Header="Стартовая страница" IsSelected="True" Background="Black">
+            <TabItem Header="Таблицы" IsSelected="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"/>
@@ -56,9 +56,12 @@
                         <Button CommandParameter="Orders" Content="Заказы" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
                         <Button CommandParameter="Suppliers" Content="Поставщики" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
                     </StackPanel>
-                    <DataGrid Grid.Column="1" x:Name="dataGrid" AutoGenerateColumns="True" SelectedItem="{Binding SelectedItem}"/>
+                    <DataGrid Grid.Column="1" x:Name="dataGrid" AutoGenerateColumns="True" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                        
+                    </DataGrid>
                 </Grid>
             </TabItem>
+            
         </TabControl>
     </Grid>
 </Window>
