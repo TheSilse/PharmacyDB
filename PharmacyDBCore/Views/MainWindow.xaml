@@ -1,0 +1,64 @@
+﻿<Window x:Class="PharmacyDBCore.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:PharmacyDBCore.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary Source="/Views/MyResources.xaml"></ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Menu>
+                <MenuItem Header="Файл">
+                    <MenuItem Header="123"/>
+                    <MenuItem Header="123"/>
+                    <MenuItem Header="123"/>
+                </MenuItem>
+                <MenuItem Header="Файл">
+                    <MenuItem Header="123"/>
+                    <MenuItem Header="123"/>
+                    <MenuItem Header="123"/>
+                </MenuItem>
+                <MenuItem Header="Файл">
+                    <MenuItem Header="123"/>
+                    <MenuItem Header="123"/>
+                    <MenuItem Header="123"/>
+                </MenuItem>
+            </Menu>
+            <Separator/>
+            <ToolBar ToolBarTray.IsLocked="True">
+                <Button Height="30" Width="64" Command="{Binding UpdateData}">Обновить</Button>
+                <Button Height="30" Width="64">Сохранить</Button>
+            </ToolBar>
+        </StackPanel>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Стартовая страница" IsSelected="True" Background="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Button CommandParameter="Appointments" Content="Назначения" Style="{StaticResource tbl}" Command="{Binding LoadData}"   />
+                        <Button CommandParameter="Clients" Content="Клиенты" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Drugs" Content="Лекарства" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Employees" Content="Сотрудники" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Orders" Content="Заказы" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Suppliers" Content="Поставщики" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                    </StackPanel>
+                    <DataGrid Grid.Column="1" x:Name="dataGrid" AutoGenerateColumns="True" SelectedItem="{Binding SelectedItem}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
