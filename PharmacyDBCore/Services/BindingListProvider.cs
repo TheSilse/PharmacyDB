@@ -15,24 +15,24 @@ namespace PharmacyDBCore.Services
         public static dynamic GetBindingList(DataType type, object sender) =>
             type switch
             {
-                DataType.Appointments => (BindingList<Appointment>)sender,
-                DataType.Clients => (BindingList<Client>)sender,
-                DataType.Drugs => (BindingList<Drug>)sender,
-                DataType.Employees => (BindingList<Employee>)sender,
-                DataType.Orders => (BindingList<Order>)sender,
-                DataType.Suppliers => (BindingList<Supplier>)sender,
+                DataType.Appointments => (BindingList<AppointmentViewModel>)sender,
+                DataType.Clients => (BindingList<ClientViewModel>)sender,
+                DataType.Drugs => (BindingList<DrugViewModel>)sender,
+                DataType.Employees => (BindingList<EmployeeViewModel>)sender,
+                DataType.Orders => (BindingList<OrderViewModel>)sender,
+                DataType.Suppliers => (BindingList<SupplierViewModel>)sender,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
 
         public static dynamic GetDataList(DataType type, DatabaseContext db) =>
             type switch
             {
-                DataType.Appointments => db.Appointments.ToList(),
-                DataType.Clients => db.Clients.ToList(),
-                DataType.Drugs => db.Drugs.ToList(),
-                DataType.Employees => db.Employees.ToList(),
-                DataType.Orders => db.Orders.ToList(),
-                DataType.Suppliers => db.Suppliers.ToList(),
+                DataType.Appointments => db.Appointments.Select(t => new AppointmentViewModel(t)).ToList(),
+                DataType.Clients => db.Clients.Select(t=> new ClientViewModel(t)).ToList(),
+                DataType.Drugs => db.Drugs.Select(t => new DrugViewModel(t)).ToList(),
+                DataType.Employees => db.Employees.Select(t => new EmployeeViewModel(t)).ToList(),
+                DataType.Orders => db.Orders.Select(t => new OrderViewModel(t)).ToList(),
+                DataType.Suppliers => db.Suppliers.Select(t => new SupplierViewModel(t)).ToList(),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
     }

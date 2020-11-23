@@ -2,18 +2,17 @@
 
 namespace PharmacyDBCore.Database.Models
 {
-    public class Client : Notify
+    public class Client
     {
-        private int _id;
-        private string _name;
-        private string _address;
-        private string _country;
-        private string _telephone;
-        public int Id { get => _id; set { _id = value; OnPropertyChanged(); } }
-        public string Name { get => _name; set { _name = value; OnPropertyChanged(); } }
-        public string Address { get => _address; set { _address = value; OnPropertyChanged(); } }
-        public string Country { get => _country; set { _country = value; OnPropertyChanged(); } }
-        public string Telephone { get => _telephone; set { _telephone = value; OnPropertyChanged(); } }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Address { get; set; }
+
+        public string Country { get; set; }
+
+        public string Telephone { get; set; }
     }
 }
 

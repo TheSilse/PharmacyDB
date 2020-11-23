@@ -13,5 +13,6 @@ namespace PharmacyDBCore
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

@@ -23,28 +23,29 @@ namespace PharmacyDBCore.ViewModels
     {
         public DataType DataType { get; set; }
         public DataGrid DataGrid { get; set; }
-        public object DataSourse { get; set; }
+        public object ItemsSource { get; set; }
         public object SelectedItem { get; set; }
         public object LastSelectedItem { get; set; }
         public LoadDataCommand LoadData => new LoadDataCommand(this);
         public UpdateDataCommand UpdateData => new UpdateDataCommand(this);
 
-        public void GenerateDataGrid<T>(IList<T> sourceItems)
+        public void GenerateDataGrid<T>(List<T> sourceItems)
         {
-            DataSourse = new BindingList<T>(sourceItems);
-            BindingList<T> bindingList = (BindingList<T>)DataSourse;
+            ItemsSource = new BindingList<T>(sourceItems);
+            BindingList<T> bindingList = (BindingList<T>)ItemsSource;
             DataGrid.ItemsSource = bindingList;
+            ((BindingList<T>)ItemsSource).ListChanged += MainWindowViewModel_ListChanged;
+
             DataGrid.SelectionChanged += DataGrid_SelectionChanged;
             DataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
-            ((BindingList<T>)DataSourse).ListChanged += MainWindowViewModel_ListChanged;
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.Column.Header is "Appointment" || 
-                e.Column.Header is "Supplier" || 
+            if (e.Column.Header is "Appointment" ||
+                e.Column.Header is "Supplier" ||
                 e.Column.Header is "User" ||
-                e.Column.Header is "Employee" || 
+                e.Column.Header is "Employee" ||
                 e.Column.Header is "Client")
                 e.Column.Visibility = Visibility.Collapsed;
         }
@@ -64,8 +65,43 @@ namespace PharmacyDBCore.ViewModels
             {
                 using (DatabaseContext db = new DatabaseContext())
                 {
-                    dynamic list = BindingListProvider.GetDataList(DataType, db);
-                    GenerateDataGrid(list);
+                    switch (DataType)
+                    {
+                        case DataType.Appointments:
+                            {
+                                GenerateDataGrid(db.Appointments.Select(t => new AppointmentViewModel(t)).ToList());
+                                break;
+                            }
+                        case DataType.Clients:
+                            {
+                                GenerateDataGrid(db.Clients.Select(t=> new ClientViewModel(t)).ToList());
+                                break;
+                            }
+                        case DataType.Drugs:
+                            {
+                                GenerateDataGrid(db.Drugs.Select(t => new DrugViewModel(t)).ToList());
+                                break;
+                            }
+                        case DataType.Employees:
+                            {
+                                GenerateDataGrid(db.Employees.Select(t => new EmployeeViewModel(t)).ToList());
+                                break;
+                            }
+                        case DataType.Orders:
+                            {
+                                GenerateDataGrid(db.Orders.Select(t => new OrderViewModel(t)).ToList());
+                                break;
+                            }
+                        case DataType.Suppliers:
+                            {
+                                GenerateDataGrid(db.Suppliers.Select(t => new SupplierViewModel(t)).ToList());
+                                break;
+                            }
+                        default:
+                            {
+                                throw new ArgumentOutOfRangeException();
+                            }
+                    }
                 }
             }
             catch (Exception ex)
@@ -84,22 +120,22 @@ namespace PharmacyDBCore.ViewModels
             {
                 using (DatabaseContext db = new DatabaseContext())
                 {
-                    dynamic list = BindingListProvider.GetBindingList(DataType, sender);
                     switch (DataType)
                     {
                         case DataType.Appointments:
                             {
                                 if (added)
                                 {
-                                    db.Appointments.UpdateRange((BindingList<Appointment>)list);
+                                    BindingList<AppointmentViewModel> list = (BindingList<AppointmentViewModel>)sender;
+                                    db.Appointments.UpdateRange(list.Select(t=>t.GetAppointment()));
                                 }
                                 else if (deleted)
                                 {
-                                    db.Appointments.Remove((Appointment)LastSelectedItem);
+                                    db.Appointments.Remove(((AppointmentViewModel)LastSelectedItem).GetAppointment());
                                 }
                                 else if (changed)
                                 {
-                                    db.Appointments.Update((Appointment)LastSelectedItem);
+                                    db.Appointments.Update(((AppointmentViewModel)LastSelectedItem).GetAppointment());
                                 }
                                 break;
                             }
@@ -107,15 +143,16 @@ namespace PharmacyDBCore.ViewModels
                             {
                                 if (added)
                                 {
-                                    db.Clients.UpdateRange((BindingList<Client>)list);
+                                    BindingList<ClientViewModel> list = (BindingList<ClientViewModel>)sender;
+                                    db.Clients.UpdateRange(list.Select(t=>t.GetClient()));
                                 }
                                 else if (deleted)
                                 {
-                                    db.Clients.Remove((Client)LastSelectedItem);
+                                    db.Clients.Remove(((ClientViewModel)LastSelectedItem).GetClient());
                                 }
                                 else if (changed)
                                 {
-                                    db.Clients.Update((Client)LastSelectedItem);
+                                    db.Clients.Update(((ClientViewModel)LastSelectedItem).GetClient());
                                 }
                                 break;
                             }
@@ -123,15 +160,16 @@ namespace PharmacyDBCore.ViewModels
                             {
                                 if (added)
                                 {
-                                    db.Drugs.UpdateRange((BindingList<Drug>)list);
+                                    BindingList<DrugViewModel> list = (BindingList<DrugViewModel>)sender;
+                                    db.Drugs.UpdateRange(list.Select(t=>t.GetDrug()));
                                 }
                                 else if (deleted)
                                 {
-                                    db.Drugs.Remove((Drug)LastSelectedItem);
+                                    db.Drugs.Remove(((DrugViewModel)LastSelectedItem).GetDrug());
                                 }
                                 else if (changed)
                                 {
-                                    db.Drugs.Update((Drug)LastSelectedItem);
+                                    db.Drugs.Update(((DrugViewModel)LastSelectedItem).GetDrug());
                                 }
                                 break;
                             }
@@ -139,15 +177,16 @@ namespace PharmacyDBCore.ViewModels
                             {
                                 if (added)
                                 {
-                                    db.Employees.UpdateRange((BindingList<Employee>)list);
+                                    BindingList<EmployeeViewModel> list = (BindingList<EmployeeViewModel>)sender;
+                                    db.Employees.UpdateRange(list.Select(t => t.GetEmployee()));
                                 }
                                 else if (deleted)
                                 {
-                                    db.Employees.Remove((Employee)LastSelectedItem);
+                                    db.Employees.Remove(((EmployeeViewModel)LastSelectedItem).GetEmployee());
                                 }
                                 else if (changed)
                                 {
-                                    db.Employees.Update((Employee)LastSelectedItem);
+                                    db.Employees.Update(((EmployeeViewModel)LastSelectedItem).GetEmployee());
                                 }
                                 break;
                             }
@@ -155,15 +194,16 @@ namespace PharmacyDBCore.ViewModels
                             {
                                 if (added)
                                 {
-                                    db.Orders.UpdateRange((BindingList<Order>)list);
+                                    BindingList<OrderViewModel> list = (BindingList<OrderViewModel>)sender;
+                                    db.Orders.UpdateRange(list.Select(t => t.GetOrder()));
                                 }
                                 else if (deleted)
                                 {
-                                    db.Orders.Remove((Order)LastSelectedItem);
+                                    db.Orders.Remove(((OrderViewModel)LastSelectedItem).GetOrder());
                                 }
                                 else if (changed)
                                 {
-                                    db.Orders.Update((Order)LastSelectedItem);
+                                    db.Orders.Update(((OrderViewModel)LastSelectedItem).GetOrder());
                                 }
                                 break;
                             }
@@ -171,15 +211,16 @@ namespace PharmacyDBCore.ViewModels
                             {
                                 if (added)
                                 {
-                                    db.Suppliers.UpdateRange((BindingList<Supplier>)list);
+                                    BindingList<SupplierViewModel> list = (BindingList<SupplierViewModel>)sender;
+                                    db.Suppliers.UpdateRange(list.Select(t => t.GetSupplier()));
                                 }
                                 else if (deleted)
                                 {
-                                    db.Suppliers.Remove((Supplier)LastSelectedItem);
+                                    db.Suppliers.Remove(((SupplierViewModel)LastSelectedItem).GetSupplier());
                                 }
                                 else if (changed)
                                 {
-                                    db.Suppliers.Update((Supplier)LastSelectedItem);
+                                    db.Suppliers.Update(((SupplierViewModel)LastSelectedItem).GetSupplier());
                                 }
                                 break;
                             }

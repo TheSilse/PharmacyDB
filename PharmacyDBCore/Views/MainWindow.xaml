@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:PharmacyDBCore.ViewModels"
+        xmlns:dataForms="clr-namespace:PharmacyDBCore.Views.DataForms"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
@@ -48,6 +49,25 @@
                         <ColumnDefinition Width="0.2*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Button CommandParameter="Appointments" Content="Назначения" Style="{StaticResource tbl}" Command="{Binding LoadData}"   />
+                        <Button CommandParameter="Clients" Content="Клиенты" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Drugs" Content="Лекарства" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Employees" Content="Сотрудники" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Orders" Content="Заказы" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Suppliers" Content="Поставщики" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                    </StackPanel>
+                    <DataGrid Grid.Column="1" x:Name="dataGrid" ItemsSource="{Binding ItemsSource}" AutoGenerateColumns="True" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                        
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Формы">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
                     <StackPanel Grid.Row="0">
                         <Button CommandParameter="Appointments" Content="Назначения" Style="{StaticResource tbl}" Command="{Binding LoadData}"   />
                         <Button CommandParameter="Clients" Content="Клиенты" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
@@ -56,12 +76,12 @@
                         <Button CommandParameter="Orders" Content="Заказы" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
                         <Button CommandParameter="Suppliers" Content="Поставщики" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
                     </StackPanel>
-                    <DataGrid Grid.Column="1" x:Name="dataGrid" AutoGenerateColumns="True" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                        
-                    </DataGrid>
+                    <Grid Grid.Column="1">
+                        <dataForms:AppointmentForm></dataForms:AppointmentForm>
+                    </Grid>
                 </Grid>
             </TabItem>
-            
+
         </TabControl>
     </Grid>
 </Window>

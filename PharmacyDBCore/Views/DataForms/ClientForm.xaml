@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="PharmacyDBCore.Views.DataForms.ClientForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PharmacyDBCore.Views.DataForms"
+             xmlns:viewModels="clr-namespace:PharmacyDBCore.ViewModels"
+             mc:Ignorable="d" Foreground="Black" Background="White" Height="346" Width="661">
+    <UserControl.DataContext>
+        <viewModels:ClientViewModel></viewModels:ClientViewModel>
+    </UserControl.DataContext>
+    <Grid>
+        <Label Height="25" Width="21"  Content="Id" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"></Label>
+        <TextBox Width="100" Height="25"  Text="{Binding Id, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.75" Margin="0,10,0,0"></TextBox>
+
+        <Label Height="25" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" />
+        <TextBox Width="100" Height="25" Text="{Binding Name, Mode=TwoWay}" Opacity="0.745" Margin="280,40,281,281"></TextBox>
+
+        <Label Content="Address" HorizontalContentAlignment="Center" Width="70" Height="25" Margin="296,70,295,251"/>
+        <TextBox Width="100" Height="25" Text="{Binding Address, Mode=TwoWay}" Opacity="0.75" Margin="280,70,281,251"  ></TextBox>
+
+        <Label Content="Country" HorizontalContentAlignment="Center" Width="70" Height="25" Margin="296,100,295,221"/>
+        <TextBox Width="100" Height="25" Text="{Binding Country, Mode=TwoWay}" Opacity="0.75" Margin="280,100,281,221"  ></TextBox>
+
+        <Label Content="Telephone" Width="70" Height="25" Margin="296,128,295,193"/>
+        <TextBox Width="100" Height="25" Text="{Binding Telephone, Mode=TwoWay}" Opacity="0.75" Margin="280,128,281,193"  ></TextBox>
+
+        <Button Content="Next" Height="25" Width="49" Margin="331,158,281,163"   />
+        <Button Content="Prev" Height="25" Width="49" Margin="280,158,332,163"   />
+        <Button Content="Save" Height="25" Width="100" Margin="280,188,281,133" />
+    </Grid>
+</UserControl>

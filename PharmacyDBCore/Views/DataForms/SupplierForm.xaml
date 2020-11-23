@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="PharmacyDBCore.Views.DataForms.SupplierForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PharmacyDBCore.Views.DataForms"
+             xmlns:viewModels="clr-namespace:PharmacyDBCore.ViewModels"
+             mc:Ignorable="d" Foreground="Black" Background="White" Height="346" Width="534">
+    <UserControl.DataContext>
+        <viewModels:SupplierViewModel></viewModels:SupplierViewModel>
+    </UserControl.DataContext>
+    <Grid>
+        <Label Content="Id" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,10,217,311"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,10,217,311" Text="{Binding Id}"/>
+
+        <Label Content="Name" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,40,217,281"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Name}"/>
+
+        <Label Content="Representative"  Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,70,217,251"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,70,216,251" Text="{Binding Representative}"/>
+
+        <Label Content="Telephone" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,100,217,220"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,100,216,221" Text="{Binding TelephoneNumber}"/>
+
+        <Label Content="Country" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,130,217,190"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,130,217,190" Text="{Binding Country}"/>
+
+        <Label Content="City" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,160,217,160"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,160,217,160" Text="{Binding City}"/>
+
+        <Label Content="Address" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,190,217,130"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,190,217,130" Text="{Binding Address}"/>
+
+
+
+        <Button Content="Next" Height="25" Width="49" Margin="269,220,216,100"  />
+        <Button Content="Prev" Height="25" Width="49" Margin="217,220,268,100"  />
+        <Button Content="Save" Height="25" Width="100" Margin="217,250,217,70" />
+    </Grid>
+</UserControl>
