@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PharmacyDBCore.Commands;
 using PharmacyDBCore.Database.Models;
 
 namespace PharmacyDBCore.ViewModels
@@ -9,16 +10,18 @@ namespace PharmacyDBCore.ViewModels
     {
         private Client _client;
         public Client GetClient() => _client;
-
+        public NextCommand NextCommand => new NextCommand(this);
+        public PrevCommand PrevCommand => new PrevCommand(this);
+        public SaveCommand SaveCommand => new SaveCommand(this);
         public ClientViewModel()
         {
-            _client??=new Client();
+            _client ??= new Client();
         }
         public ClientViewModel(Client client)
         {
             _client = client;
         }
-        
+
         public int Id
         {
             get => _client.Id;

@@ -6,7 +6,8 @@
         xmlns:vm="clr-namespace:PharmacyDBCore.ViewModels"
         xmlns:dataForms="clr-namespace:PharmacyDBCore.Views.DataForms"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="470" Width="800"
+        ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary Source="/Views/MyResources.xaml"></ResourceDictionary>
     </Window.Resources>
@@ -43,7 +44,7 @@
             </ToolBar>
         </StackPanel>
         <TabControl Grid.Row="1">
-            <TabItem Header="Таблицы" IsSelected="True">
+            <TabItem Header="Tables" IsSelected="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"/>
@@ -58,30 +59,28 @@
                         <Button CommandParameter="Suppliers" Content="Поставщики" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
                     </StackPanel>
                     <DataGrid Grid.Column="1" x:Name="dataGrid" ItemsSource="{Binding ItemsSource}" AutoGenerateColumns="True" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                        
+
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Формы">
+            <TabItem Header="Forms">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"/>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Row="0">
-                        <Button CommandParameter="Appointments" Content="Назначения" Style="{StaticResource tbl}" Command="{Binding LoadData}"   />
-                        <Button CommandParameter="Clients" Content="Клиенты" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
-                        <Button CommandParameter="Drugs" Content="Лекарства" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
-                        <Button CommandParameter="Employees" Content="Сотрудники" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
-                        <Button CommandParameter="Orders" Content="Заказы" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
-                        <Button CommandParameter="Suppliers" Content="Поставщики" Style="{StaticResource tbl}" Command="{Binding LoadData}"/>
+                        <Button CommandParameter="Appointments" Content="Appointments" Style="{StaticResource tbl}" Command="{Binding LoadForm}"   />
+                        <Button CommandParameter="Clients" Content="Clients" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Drugs" Content="Drugs" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Employees" Content="Employees" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Orders" Content="Orders" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Suppliers" Content="Suppliers" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
                     </StackPanel>
-                    <Grid Grid.Column="1">
-                        <dataForms:AppointmentForm></dataForms:AppointmentForm>
+                    <Grid x:Name="FormGrid" Grid.Column="1" >
                     </Grid>
                 </Grid>
             </TabItem>
-
         </TabControl>
     </Grid>
 </Window>

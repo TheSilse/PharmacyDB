@@ -11,34 +11,34 @@
     </UserControl.DataContext>
     <Grid>
         <Label Content="Id" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,10,217,311"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,10,217,311" Text="{Binding Id}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,10,217,311" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Date" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,40,217,281"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Date}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="DeliveryCost" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,70,217,251"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,70,217,251" Text="{Binding DeliveryCost}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,70,217,251" Text="{Binding DeliveryCost, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Recipient" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,100,218,221"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,100,217,221" Text="{Binding Recipient}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,100,217,221" Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="RecipientAddress"  Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,130,218,191"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,130,217,191" Text="{Binding RecipientAddress}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,130,217,191" Text="{Binding RecipientAddress, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="RecipientCity" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,160,218,161"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,160,217,161" Text="{Binding RecipientCity}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,160,217,161" Text="{Binding RecipientCity, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="RecipientCountry" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,190,217,130"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,190,217,131" Text="{Binding RecipientCountry}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,190,217,131" Text="{Binding RecipientCountry, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="ClientId" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,220,217,100"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,220,217,100" Text="{Binding ClientId}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,220,217,100" Text="{Binding ClientId, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="EmployeeId" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,251,217,70"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,250,217,70" Text="{Binding EmployeeId}"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,250,217,70" Text="{Binding EmployeeId, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Content="Next" Height="25" Width="49" Margin="267,281,218,40"  />
-        <Button Content="Prev" Height="25" Width="49" Margin="217,281,268,40"  />
-        <Button Content="Save" Height="25" Width="100" Margin="217,311,217,10" />
+        <Button Content="Next" Height="25" Width="49" Margin="267,281,218,40"  CommandParameter="Orders" Command="{Binding NextCommand}"/>
+        <Button Content="Prev" Height="25" Width="49" Margin="217,281,268,40"  CommandParameter="Orders" Command="{Binding PrevCommand}"/>
+        <Button Content="Save" Height="25" Width="100" Margin="217,311,217,10" CommandParameter="Orders" Command="{Binding SaveCommand}"/>
     </Grid>
 </UserControl>

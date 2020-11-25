@@ -5,11 +5,7 @@ namespace PharmacyDBCore.Database.Models
 {
     public class Order
     {
-        public Order()
-        {
-            EmployeeId = 1;
-            ClientId = 1;
-        }
+
         public int Id { get; set; }
 
         public int ClientId { get; set; }
@@ -31,5 +27,11 @@ namespace PharmacyDBCore.Database.Models
         public string RecipientCity { get; set; }
 
         public string RecipientCountry { get; set; }
+
+        public Order()
+        {
+            EmployeeId = 1;
+            ClientId = 1;
+        }
     }
 }

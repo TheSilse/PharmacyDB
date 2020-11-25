@@ -17,5 +17,7 @@ namespace PharmacyDBCore.Database.Models
         public string Country { get; set; }
 
         public string TelephoneNumber { get; set; }
+
+       
     }
 }

@@ -11,16 +11,16 @@
     </UserControl.DataContext>
     <Grid Width="661">
         <Label Height="25" Width="21"  Content="Id" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
-        <TextBox Width="100" Height="25"  Text="{Binding Id, Mode=TwoWay}" HorizontalAlignment="Center"  VerticalAlignment="Top" Opacity="0.75" Margin="0,10,0,0"/>
+        <TextBox Width="100" Height="25"  Text="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Top" Opacity="0.75" Margin="0,10,0,0"/>
 
         <Label Height="25" Content="Group" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" />
-        <TextBox Width="100" Height="25" Text="{Binding Group, Mode=TwoWay}" Opacity="0.745" Margin="281,40,280,281" />
+        <TextBox Width="100" Height="25" Text="{Binding Group, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Opacity="0.745" Margin="281,40,280,281" />
 
         <Label Content="Description" Width="70" Height="25" Margin="296,70,295,251"/>
-        <TextBox Width="100" Height="25" Text="{Binding Description, Mode=TwoWay}" Opacity="0.75" Margin="281,70,280,251"  />
+        <TextBox Width="100" Height="25" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Opacity="0.75" Margin="281,70,280,251"  />
 
-        <Button Content="Next" Height="25" Width="50" Margin="331,100,0,221" HorizontalAlignment="Left"  />
-        <Button Content="Prev" Height="25" Width="49" Margin="281,100,331,221"  />
-        <Button Content="Save" Height="25" Width="100" Margin="281,130,280,191" />
+        <Button Content="Next" Height="25" Width="50" Margin="331,100,0,221" HorizontalAlignment="Left" CommandParameter="Appointments" Command="{Binding NextCommand}"  />
+        <Button Content="Prev" Height="25" Width="49" Margin="281,100,331,221" CommandParameter="Appointments" Command="{Binding PrevCommand}" />
+        <Button Content="Save" Height="25" Width="100" Margin="281,130,280,191" CommandParameter="Appointments" Command="{Binding SaveCommand}" />
     </Grid>
 </UserControl>

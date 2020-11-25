@@ -18,5 +18,7 @@ namespace PharmacyDBCore.Database.Models
         public string Telephone { get; set; }
 
         public decimal Salary { get; set; }
+
+        
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Text;
+using PharmacyDBCore.Commands;
 using PharmacyDBCore.Database.Models;
 
 namespace PharmacyDBCore.ViewModels
@@ -10,6 +11,9 @@ namespace PharmacyDBCore.ViewModels
     {
         private Order _order;
         public Order GetOrder() => _order;
+        public NextCommand NextCommand => new NextCommand(this);
+        public PrevCommand PrevCommand => new PrevCommand(this);
+        public SaveCommand SaveCommand => new SaveCommand(this);
         public OrderViewModel()
         {
             _order ??= new Order();

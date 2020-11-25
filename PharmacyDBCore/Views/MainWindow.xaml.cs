@@ -12,7 +12,7 @@ namespace PharmacyDBCore.Views
         public MainWindow()
         {
             InitializeComponent();
-            ((MainWindowViewModel)DataContext).DataGrid = ((MainWindow)Application.Current.MainWindow).dataGrid;
+            DataContext = new MainWindowViewModel();
         }
     }
 }

@@ -11,30 +11,30 @@
     </UserControl.DataContext>
     <Grid>
         <Label Content="Id" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,10,217,311"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,10,217,311" Text="{Binding Id}"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" Opacity="0.75" Margin="217,10,217,311" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Name" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,40,217,281"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Name}"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Representative"  Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,70,217,251"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,70,216,251" Text="{Binding Representative}"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,70,216,251" Text="{Binding Representative, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Telephone" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,100,217,220"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,100,216,221" Text="{Binding TelephoneNumber}"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,100,216,221" Text="{Binding TelephoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Country" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,130,217,190"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,130,217,190" Text="{Binding Country}"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,130,217,190" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="City" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,160,217,160"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,160,217,160" Text="{Binding City}"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,160,217,160" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Address" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,190,217,130"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,190,217,130" Text="{Binding Address}"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,190,217,130" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
 
 
 
-        <Button Content="Next" Height="25" Width="49" Margin="269,220,216,100"  />
-        <Button Content="Prev" Height="25" Width="49" Margin="217,220,268,100"  />
-        <Button Content="Save" Height="25" Width="100" Margin="217,250,217,70" />
+        <Button Content="Next" Height="25" Width="49" Margin="269,220,216,100" CommandParameter="Suppliers" Command="{Binding NextCommand}" />
+        <Button Content="Prev" Height="25" Width="49" Margin="217,220,268,100" CommandParameter="Suppliers" Command="{Binding PrevCommand}" />
+        <Button Content="Save" Height="25" Width="100" Margin="217,250,217,70" CommandParameter="Suppliers" Command="{Binding SaveCommand}"/>
     </Grid>
 </UserControl>

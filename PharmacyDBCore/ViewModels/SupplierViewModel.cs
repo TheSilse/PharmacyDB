@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
+using PharmacyDBCore.Commands;
 using PharmacyDBCore.Database.Models;
 
 namespace PharmacyDBCore.ViewModels
@@ -10,6 +11,9 @@ namespace PharmacyDBCore.ViewModels
     {
         private Supplier _supplier;
         public Supplier GetSupplier() => _supplier;
+        public NextCommand NextCommand => new NextCommand(this);
+        public PrevCommand PrevCommand => new PrevCommand(this);
+        public SaveCommand SaveCommand => new SaveCommand(this);
         public SupplierViewModel()
         {
             _supplier ??= new Supplier();
