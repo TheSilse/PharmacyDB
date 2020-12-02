@@ -134,7 +134,9 @@ namespace PharmacyDBCore.Commands
                                 if (added)
                                 {
                                     BindingList<AppointmentViewModel> list = (BindingList<AppointmentViewModel>)sender;
-                                    db.Appointments.UpdateRange(list.Select(t => t.GetAppointment()));
+                                    Appointment newItem = list.ToList().Last().GetAppointment();
+                                    newItem.Id = list.Count;
+                                    db.Appointments.Add(newItem);
                                 }
                                 else if (deleted)
                                 {
@@ -151,7 +153,9 @@ namespace PharmacyDBCore.Commands
                                 if (added)
                                 {
                                     BindingList<ClientViewModel> list = (BindingList<ClientViewModel>)sender;
-                                    db.Clients.UpdateRange(list.Select(t => t.GetClient()));
+                                    Client newItem = list.ToList().Last().GetClient();
+                                    newItem.Id = list.Count;
+                                    db.Clients.Add(newItem);
                                 }
                                 else if (deleted)
                                 {
@@ -168,7 +172,9 @@ namespace PharmacyDBCore.Commands
                                 if (added)
                                 {
                                     BindingList<DrugViewModel> list = (BindingList<DrugViewModel>)sender;
-                                    db.Drugs.UpdateRange(list.Select(t => t.GetDrug()));
+                                    Drug newItem = list.ToList().Last().GetDrug();
+                                    newItem.Id = list.Count;
+                                    db.Drugs.Add(newItem);
                                 }
                                 else if (deleted)
                                 {
@@ -185,7 +191,9 @@ namespace PharmacyDBCore.Commands
                                 if (added)
                                 {
                                     BindingList<EmployeeViewModel> list = (BindingList<EmployeeViewModel>)sender;
-                                    db.Employees.UpdateRange(list.Select(t => t.GetEmployee()));
+                                    Employee newItem = list.ToList().Last().GetEmployee();
+                                    newItem.Id = list.Count;
+                                    db.Employees.Add(newItem);
                                 }
                                 else if (deleted)
                                 {
@@ -202,7 +210,9 @@ namespace PharmacyDBCore.Commands
                                 if (added)
                                 {
                                     BindingList<OrderViewModel> list = (BindingList<OrderViewModel>)sender;
-                                    db.Orders.UpdateRange(list.Select(t => t.GetOrder()));
+                                    Order newItem = list.ToList().Last().GetOrder();
+                                    newItem.Id = list.Count;
+                                    db.Orders.Add(newItem);
                                 }
                                 else if (deleted)
                                 {
@@ -219,7 +229,9 @@ namespace PharmacyDBCore.Commands
                                 if (added)
                                 {
                                     BindingList<SupplierViewModel> list = (BindingList<SupplierViewModel>)sender;
-                                    db.Suppliers.UpdateRange(list.Select(t => t.GetSupplier()));
+                                    Supplier newItem = list.ToList().Last().GetSupplier();
+                                    newItem.Id = list.Count;
+                                    db.Suppliers.Add(newItem);
                                 }
                                 else if (deleted)
                                 {

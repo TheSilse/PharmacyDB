@@ -11,6 +11,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using GalaSoft.MvvmLight.Command;
 using PharmacyDBCore.Database;
 using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.Services;
@@ -31,6 +32,7 @@ namespace PharmacyDBCore.ViewModels
         public UpdateDataCommand UpdateData => new UpdateDataCommand(this);
         public LoadFormCommand LoadForm => new LoadFormCommand(this);
 
+        
         public MainWindowViewModel()
         {
             DataGrid = ((MainWindow)Application.Current.MainWindow).dataGrid;

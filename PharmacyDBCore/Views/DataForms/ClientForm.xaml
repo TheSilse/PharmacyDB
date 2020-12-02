@@ -13,20 +13,20 @@
         <Label Height="25" Width="21"  Content="Id" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"></Label>
         <TextBox Width="100" Height="25"  Text="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.75" Margin="0,10,0,0"></TextBox>
 
-        <Label Height="25" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" />
-        <TextBox Width="100" Height="25" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Opacity="0.745" Margin="280,40,281,281"></TextBox>
+        <Label Height="25" Content="Имя" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" />
+        <TextBox Width="100" Height="25" Text="{Binding Name, Mode=TwoWay }" Opacity="0.745" Margin="280,40,281,281"></TextBox>
 
-        <Label Content="Address" HorizontalContentAlignment="Center" Width="70" Height="25" Margin="296,70,295,251"/>
-        <TextBox Width="100" Height="25" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Opacity="0.75" Margin="280,70,281,251"  ></TextBox>
+        <Label Content="Адрес" HorizontalContentAlignment="Center" Width="70" Height="25" Margin="296,70,295,251"/>
+        <TextBox Width="100" Height="25" Text="{Binding Address, Mode=TwoWay }" Opacity="0.75" Margin="280,70,281,251"  ></TextBox>
 
-        <Label Content="Country" HorizontalContentAlignment="Center" Width="70" Height="25" Margin="296,100,295,221"/>
-        <TextBox Width="100" Height="25" Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Opacity="0.75" Margin="280,100,281,221"  ></TextBox>
+        <Label Content="Страна" HorizontalContentAlignment="Center" Width="70" Height="25" Margin="296,100,295,221"/>
+        <TextBox Width="100" Height="25" Text="{Binding Country, Mode=TwoWay }" Opacity="0.75" Margin="280,100,281,221"  ></TextBox>
 
-        <Label Content="Telephone" Width="70" Height="25" Margin="296,128,295,193"/>
-        <TextBox Width="100" Height="25" Text="{Binding Telephone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Opacity="0.75" Margin="280,128,281,193"  ></TextBox>
+        <Label Content="Телефон" Width="70" Height="25" Margin="296,128,295,193"/>
+        <TextBox Width="100" Height="25" Text="{Binding Telephone, Mode=TwoWay }" Opacity="0.75" Margin="280,128,281,193"  ></TextBox>
 
-        <Button Content="Next" Height="25" Width="49" Margin="331,158,281,163"  CommandParameter="Clients" Command="{Binding NextCommand}" />
-        <Button Content="Prev" Height="25" Width="49" Margin="280,158,332,163"  CommandParameter="Clients" Command="{Binding PrevCommand}" />
-        <Button Content="Save" Height="25" Width="100" Margin="280,188,281,133" CommandParameter="Clients" Command="{Binding SaveCommand}" />
+        <Button Content="Вперед" Height="25" Width="49" Margin="331,158,281,163"  CommandParameter="Clients" Command="{Binding NextCommand}" />
+        <Button Content="Назад" Height="25" Width="49" Margin="280,158,332,163"  CommandParameter="Clients" Command="{Binding PrevCommand}" />
+        <Button Content="Сохранить" Height="25" Width="100" Margin="280,188,281,133" CommandParameter="Clients" Command="{Binding SaveCommand}" />
     </Grid>
 </UserControl>

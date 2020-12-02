@@ -22,29 +22,19 @@
         <StackPanel Grid.Row="0">
             <Menu>
                 <MenuItem Header="Файл">
-                    <MenuItem Header="123"/>
-                    <MenuItem Header="123"/>
-                    <MenuItem Header="123"/>
+                    <MenuItem Header="Выход"/>
                 </MenuItem>
-                <MenuItem Header="Файл">
-                    <MenuItem Header="123"/>
-                    <MenuItem Header="123"/>
-                    <MenuItem Header="123"/>
-                </MenuItem>
-                <MenuItem Header="Файл">
-                    <MenuItem Header="123"/>
-                    <MenuItem Header="123"/>
-                    <MenuItem Header="123"/>
+                <MenuItem Header="Помощь">
+                    <MenuItem Header="О программе PharmacyDB"/>
                 </MenuItem>
             </Menu>
             <Separator/>
-            <ToolBar ToolBarTray.IsLocked="True">
+            <ToolBar ToolBarTray.IsLocked="True" Background="#F0F0F0">
                 <Button Height="30" Width="64" Command="{Binding UpdateData}">Обновить</Button>
-                <Button Height="30" Width="64">Сохранить</Button>
             </ToolBar>
         </StackPanel>
         <TabControl Grid.Row="1">
-            <TabItem Header="Tables" IsSelected="True">
+            <TabItem Header="Таблицы" IsSelected="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"/>
@@ -63,19 +53,19 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Forms">
+            <TabItem Header="Формы">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"/>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Row="0">
-                        <Button CommandParameter="Appointments" Content="Appointments" Style="{StaticResource tbl}" Command="{Binding LoadForm}"   />
-                        <Button CommandParameter="Clients" Content="Clients" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
-                        <Button CommandParameter="Drugs" Content="Drugs" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
-                        <Button CommandParameter="Employees" Content="Employees" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
-                        <Button CommandParameter="Orders" Content="Orders" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
-                        <Button CommandParameter="Suppliers" Content="Suppliers" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Appointments" Content="Назначения" Style="{StaticResource tbl}" Command="{Binding LoadForm}"   />
+                        <Button CommandParameter="Clients" Content="Клиенты" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Drugs" Content="Лекарства" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Employees" Content="Сотрудники" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Orders" Content="Заказы" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
+                        <Button CommandParameter="Suppliers" Content="Поставщики" Style="{StaticResource tbl}" Command="{Binding LoadForm}"/>
                     </StackPanel>
                     <Grid x:Name="FormGrid" Grid.Column="1" >
                     </Grid>

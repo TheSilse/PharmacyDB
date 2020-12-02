@@ -13,23 +13,23 @@
         <Label Content="Id" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,10,217,311"/>
         <TextBox Width="100" Height="25" VerticalContentAlignment="Center" Opacity="0.75" Margin="217,10,217,311" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Name" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,40,217,281"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Имя" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,40,217,281"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Name }"/>
 
-        <Label Content="Representative"  Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,70,217,251"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,70,216,251" Text="{Binding Representative, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Представитель"  Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,70,217,251"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,70,216,251" Text="{Binding Representative }"/>
 
-        <Label Content="Telephone" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,100,217,220"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,100,216,221" Text="{Binding TelephoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Телефон" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,100,217,220"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="218,100,216,221" Text="{Binding TelephoneNumber }"/>
 
-        <Label Content="Country" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,130,217,190"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,130,217,190" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Страна" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,130,217,190"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,130,217,190" Text="{Binding Country }"/>
 
-        <Label Content="City" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,160,217,160"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,160,217,160" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Город" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,160,217,160"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,160,217,160" Text="{Binding City }"/>
 
-        <Label Content="Address" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,190,217,130"/>
-        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,190,217,130" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Адрес" Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,190,217,130"/>
+        <TextBox Width="100" Height="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Opacity="0.75" Margin="217,190,217,130" Text="{Binding Address }"/>
 
 
 

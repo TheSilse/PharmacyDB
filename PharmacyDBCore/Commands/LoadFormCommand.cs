@@ -30,12 +30,12 @@ namespace PharmacyDBCore.Commands
 
         public void LoadForm(DataType type)
         {
-            ((MainWindow)(Application.Current.MainWindow)).FormGrid.Children.Clear();
             switch (type)
             {
                 case DataType.Appointments:
                     {
                         ((MainWindow)(Application.Current.MainWindow)).FormGrid.Children.Add(new AppointmentForm());
+                        
                         break;
                     }
                 case DataType.Clients:

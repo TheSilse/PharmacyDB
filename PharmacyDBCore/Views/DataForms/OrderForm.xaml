@@ -13,29 +13,29 @@
         <Label Content="Id" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,10,217,311"/>
         <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,10,217,311" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Date" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,40,217,281"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Дата" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,40,217,281"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,40,217,281" Text="{Binding Date }"/>
 
-        <Label Content="DeliveryCost" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,70,217,251"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,70,217,251" Text="{Binding DeliveryCost, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Цена доставки" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,70,217,251"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,70,217,251" Text="{Binding DeliveryCost }"/>
 
-        <Label Content="Recipient" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,100,218,221"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,100,217,221" Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Получатель" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,100,218,221"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,100,217,221" Text="{Binding Recipient }"/>
 
-        <Label Content="RecipientAddress"  Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,130,218,191"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,130,217,191" Text="{Binding RecipientAddress, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Адрес"  Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,130,218,191"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,130,217,191" Text="{Binding RecipientAddress }"/>
 
-        <Label Content="RecipientCity" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,160,218,161"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,160,217,161" Text="{Binding RecipientCity, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Город" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="216,160,218,161"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,160,217,161" Text="{Binding RecipientCity }"/>
 
-        <Label Content="RecipientCountry" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,190,217,130"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,190,217,131" Text="{Binding RecipientCountry, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Страна" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,190,217,130"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,190,217,131" Text="{Binding RecipientCountry }"/>
 
-        <Label Content="ClientId" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,220,217,100"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,220,217,100" Text="{Binding ClientId, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Id клиента" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,220,217,100"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,220,217,100" Text="{Binding ClientId }"/>
 
-        <Label Content="EmployeeId" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,251,217,70"/>
-        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,250,217,70" Text="{Binding EmployeeId, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Id сотрудника" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,251,217,70"/>
+        <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,250,217,70" Text="{Binding EmployeeId }"/>
 
         <Button Content="Next" Height="25" Width="49" Margin="267,281,218,40"  CommandParameter="Orders" Command="{Binding NextCommand}"/>
         <Button Content="Prev" Height="25" Width="49" Margin="217,281,268,40"  CommandParameter="Orders" Command="{Binding PrevCommand}"/>

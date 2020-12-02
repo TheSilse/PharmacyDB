@@ -22,7 +22,5 @@ namespace PharmacyDBCore.Views.DataForms
         {
             InitializeComponent();
         }
-
-        
     }
 }

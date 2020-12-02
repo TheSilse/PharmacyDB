@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PharmacyDBCore.Commands;
+﻿using GalaSoft.MvvmLight.Command;
+using PharmacyDBCore.Database;
 using PharmacyDBCore.Database.Models;
+using System.Linq;
+using PharmacyDBCore.Commands;
 
 namespace PharmacyDBCore.ViewModels
 {
@@ -13,18 +13,24 @@ namespace PharmacyDBCore.ViewModels
         public PrevCommand PrevCommand => new PrevCommand(this);
         public NextCommand NextCommand => new NextCommand(this);
         public SaveCommand SaveCommand => new SaveCommand(this);
+
         public AppointmentViewModel()
         {
             _appointment ??= new Appointment();
         }
-        public AppointmentViewModel(Appointment appointment)
+
+        public AppointmentViewModel(Appointment appointment) : this()
         {
             _appointment = appointment;
         }
         public int Id
         {
             get => _appointment.Id;
-            set { _appointment.Id = value; OnPropertyChanged(); }
+            set
+            {
+                _appointment.Id = value;
+                OnPropertyChanged();
+            }
         }
 
         public string Group
@@ -38,6 +44,7 @@ namespace PharmacyDBCore.ViewModels
             get => _appointment.Description;
             set { _appointment.Description = value; OnPropertyChanged(); }
         }
-
+       
+        
     }
 }

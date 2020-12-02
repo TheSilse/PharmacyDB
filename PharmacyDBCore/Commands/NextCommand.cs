@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using PharmacyDBCore.Database;
 using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.ViewModels;
@@ -10,222 +15,244 @@ namespace PharmacyDBCore.Commands
 {
     public class NextCommand : BaseCommand
     {
-        private AppointmentViewModel _appointment;
-        private ClientViewModel _client;
-        private DrugViewModel _drug;
-        private EmployeeViewModel _employee;
-        private OrderViewModel _order;
-        private SupplierViewModel _supplier;
+        private AppointmentViewModel _appVM;
+        private ClientViewModel _clientVM;
+        private DrugViewModel _drugVM;
+        private EmployeeViewModel _employeeVM;
+        private OrderViewModel _orderVM;
+        private SupplierViewModel _supplierVM;
 
-        public NextCommand(AppointmentViewModel viewModel) => _appointment = viewModel;
-        public NextCommand(ClientViewModel viewModel) => _client = viewModel;
-        public NextCommand(DrugViewModel viewModel) => _drug = viewModel;
-        public NextCommand(EmployeeViewModel viewModel) => _employee = viewModel;
-        public NextCommand(OrderViewModel viewModel) => _order = viewModel;
-        public NextCommand(SupplierViewModel viewModel) => _supplier = viewModel;
+        private DatabaseContext _db;
+
+
+        public NextCommand(AppointmentViewModel viewModel)
+        {
+            _appVM = viewModel;
+
+        }
+
+        public NextCommand(ClientViewModel viewModel)
+        {
+            _clientVM = viewModel;
+        }
+
+        public NextCommand(DrugViewModel viewModel)
+        {
+            _drugVM = viewModel;
+        }
+
+        public NextCommand(EmployeeViewModel viewModel)
+        {
+            _employeeVM = viewModel;
+        }
+
+        public NextCommand(OrderViewModel viewModel)
+        {
+            _orderVM = viewModel;
+        }
+
+        public NextCommand(SupplierViewModel viewModel)
+        {
+            _supplierVM = viewModel;
+        }
+
 
         public override bool CanExecute(object parameter)
         {
             DataType type = Enum.Parse<DataType>((string)parameter, true);
-            using (DatabaseContext db = new DatabaseContext())
+            _db ??= new DatabaseContext();
+            switch (type)
             {
-                switch (type)
-                {
-                    case DataType.Appointments:
+                case DataType.Appointments:
+                    {
+                        if (!_db.Appointments.Any())
                         {
-                            if (!db.Appointments.Any())
-                            {
-                                return false;
-                            }
-                            int lastId = db.Appointments.ToList().Last().Id;
-                            return _appointment.Id < lastId;
+                            return false;
                         }
-                    case DataType.Clients:
+                        int dbLastId = _db.Appointments.ToList().Last().Id;
+                        return _appVM.Id < dbLastId && _appVM.Id != dbLastId;
+                    }
+                case DataType.Clients:
+                    {
+                        if (!_db.Clients.Any())
                         {
-                            if (!db.Clients.Any())
-                            {
-                                return false;
-                            }
-                            int lastId = db.Clients.ToList().Last().Id;
-                            return _client.Id < lastId;
+                            return false;
                         }
-                    case DataType.Drugs:
+                        int dbLastId = _db.Clients.ToList().Last().Id;
+                        return _clientVM.Id < dbLastId && _clientVM.Id != dbLastId;
+                    }
+                case DataType.Drugs:
+                    {
+                        if (!_db.Drugs.Any())
                         {
-                            if (!db.Drugs.Any())
-                            {
-                                return false;
-                            }
-                            int lastId = db.Drugs.ToList().Last().Id;
-                            return _drug.Id < lastId;
+                            return false;
                         }
-                    case DataType.Employees:
+                        int dbLastId = _db.Drugs.ToList().Last().Id;
+                        return _drugVM.Id < dbLastId && _drugVM.Id != dbLastId;
+                    }
+                case DataType.Employees:
+                    {
+                        if (!_db.Employees.Any())
                         {
-                            if (!db.Employees.Any())
-                            {
-                                return false;
-                            }
-                            int lastId = db.Employees.ToList().Last().Id;
-                            return _employee.Id < lastId;
+                            return false;
                         }
-                    case DataType.Orders:
+                        int dbLastId = _db.Employees.ToList().Last().Id;
+                        return _employeeVM.Id < dbLastId && _employeeVM.Id != dbLastId;
+                    }
+                case DataType.Orders:
+                    {
+                        if (!_db.Orders.Any())
                         {
-                            if (!db.Orders.Any())
-                            {
-                                return false;
-                            }
-                            int lastId = db.Orders.ToList().Last().Id;
-                            return _order.Id < lastId;
+                            return false;
                         }
-                    case DataType.Suppliers:
+                        int dbLastId = _db.Orders.ToList().Last().Id;
+                        return _orderVM.Id < dbLastId && _orderVM.Id != dbLastId;
+                    }
+                case DataType.Suppliers:
+                    {
+                        if (!_db.Suppliers.Any())
                         {
-                            if (!db.Suppliers.Any())
-                            {
-                                return false;
-                            }
-                            int lastId = db.Suppliers.ToList().Last().Id;
-                            return _supplier.Id < lastId;
+                            return false;
                         }
-                    default:
-                        {
-                            throw new ArgumentOutOfRangeException();
-                        }
-                }
+                        int dbLastId = _db.Suppliers.ToList().Last().Id;
+                        return _supplierVM.Id < dbLastId && _supplierVM.Id != dbLastId;
+                    }
+                default:
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
             }
-
         }
-
         public override void Execute(object parameter)
         {
             DataType type = Enum.Parse<DataType>((string)parameter, true);
-            using (DatabaseContext db = new DatabaseContext())
+            _db ??= new DatabaseContext();
+            switch (type)
             {
-                switch (type)
+                case DataType.Appointments:
                 {
-                    case DataType.Appointments:
-                        {
-                            Appointment finded = null;
-                            if (_appointment.Id == 0)
-                            {
-                                finded = db.Appointments.First();
-                            }
-                            else
-                            {
-                                finded = db.Appointments.ToList().SkipWhile(t => t.Id != _appointment.Id).Skip(1).Take(1).Single();
-                            }
-                            _appointment.Id = finded.Id;
-                            _appointment.Group = finded.Group;
-                            _appointment.Description = finded.Description;
-                            break;
-                        }
-                    case DataType.Clients:
-                        {
-                            Client finded = null;
-                            if (_client.Id == 0)
-                            {
-                                finded = db.Clients.First();
-                            }
-                            else
-                            {
+                    Appointment finded = null;
+                    if (_appVM.Id == 0)
+                    {
+                        finded = _db.Appointments.First();
+                    }
+                    else
+                    {
+                        finded = _db.Appointments.ToList().SkipWhile(t => t.Id != _appVM.Id).Skip(1).Take(1).Single();
+                    }
+                    _appVM.Id = finded.Id;
+                    _appVM.Group = finded.Group;
+                    _appVM.Description = finded.Description;
+                    break;
+                }
+                case DataType.Clients:
+                {
+                    Client finded = null;
+                    if (_clientVM.Id == 0)
+                    {
+                        finded = _db.Clients.First();
+                    }
+                    else
+                    {
 
-                                finded = db.Clients.ToList().SkipWhile(t => t.Id != _client.Id).Skip(1).Take(1).Single();
-                            }
-                            _client.Id = finded.Id;
-                            _client.Name = finded.Name;
-                            _client.Address = finded.Address;
-                            _client.Telephone = finded.Telephone;
-                            _client.Country = finded.Country;
-                            break;
-                        }
-                    case DataType.Drugs:
-                        {
-                            Drug finded = null;
-                            if (_drug.Id == 0)
-                            {
-                                finded = db.Drugs.First();
-                            }
-                            else
-                            {
-                                finded = db.Drugs.ToList().SkipWhile(t => t.Id != _drug.Id).Skip(1).Take(1).Single();
-                            }
-                            _drug.Id = finded.Id;
-                            _drug.Name = finded.Name;
-                            _drug.Appointment = finded.Appointment;
-                            _drug.AppointmentId = finded.AppointmentId;
-                            _drug.Count = finded.Count;
-                            _drug.Price = finded.Price;
-                            _drug.Supplier = finded.Supplier;
-                            _drug.SupplierId = finded.SupplierId;
-                            break;
-                        }
-                    case DataType.Employees:
-                        {
-                            Employee finded = null;
-                            if (_employee.Id == 0)
-                            {
-                                finded = db.Employees.First();
-                            }
-                            else
-                            {
-                                finded = db.Employees.ToList().SkipWhile(t => t.Id != _employee.Id).Skip(1).Take(1).Single();
-                            }
-                            _employee.Id = finded.Id;
-                            _employee.Name = finded.Name;
-                            _employee.MiddleName = finded.MiddleName;
-                            _employee.Position = finded.Position;
-                            _employee.Telephone = finded.Telephone;
-                            _employee.SecondName = finded.SecondName;
-                            _employee.Salary = finded.Salary;
-                            break;
-                        }
-                    case DataType.Orders:
-                        {
-                            Order finded = null;
-                            if (_order.Id == 0)
-                            {
-                                finded = db.Orders.First();
-                            }
-                            else
-                            {
-                                 finded = db.Orders.ToList().SkipWhile(t => t.Id != _order.Id).Skip(1).Take(1).Single();
+                        finded = _db.Clients.ToList().SkipWhile(t => t.Id != _clientVM.Id).Skip(1).Take(1).Single();
+                    }
+                    _clientVM.Id = finded.Id;
+                    _clientVM.Name = finded.Name;
+                    _clientVM.Address = finded.Address;
+                    _clientVM.Telephone = finded.Telephone;
+                    _clientVM.Country = finded.Country;
+                    break;
+                }
+                case DataType.Drugs:
+                {
+                    Drug finded = null;
+                    if (_drugVM.Id == 0)
+                    {
+                        finded = _db.Drugs.First();
+                    }
+                    else
+                    {
+                        finded = _db.Drugs.ToList().SkipWhile(t => t.Id != _drugVM.Id).Skip(1).Take(1).Single();
+                    }
+                    _drugVM.Id = finded.Id;
+                    _drugVM.Name = finded.Name;
+                    _drugVM.Appointment = finded.Appointment;
+                    _drugVM.AppointmentId = finded.AppointmentId;
+                    _drugVM.Count = finded.Count;
+                    _drugVM.Price = finded.Price;
+                    _drugVM.Supplier = finded.Supplier;
+                    _drugVM.SupplierId = finded.SupplierId;
+                    break;
+                }
+                case DataType.Employees:
+                {
+                    Employee finded = null;
+                    if (_employeeVM.Id == 0)
+                    {
+                        finded = _db.Employees.First();
+                    }
+                    else
+                    {
+                        finded = _db.Employees.ToList().SkipWhile(t => t.Id != _employeeVM.Id).Skip(1).Take(1).Single();
+                    }
+                    _employeeVM.Id = finded.Id;
+                    _employeeVM.Name = finded.Name;
+                    _employeeVM.MiddleName = finded.MiddleName;
+                    _employeeVM.Position = finded.Position;
+                    _employeeVM.Telephone = finded.Telephone;
+                    _employeeVM.SecondName = finded.SecondName;
+                    _employeeVM.Salary = finded.Salary;
+                    break;
+                }
+                case DataType.Orders:
+                {
+                    Order finded = null;
+                    if (_orderVM.Id == 0)
+                    {
+                        finded = _db.Orders.First();
+                    }
+                    else
+                    {
+                        finded = _db.Orders.ToList().SkipWhile(t => t.Id != _orderVM.Id).Skip(1).Take(1).Single();
 
-                            }
-                            _order.Id = finded.Id;
-                            _order.Client = finded.Client;
-                            _order.ClientId = finded.ClientId;
-                            _order.Employee = finded.Employee;
-                            _order.EmployeeId = finded.EmployeeId;
-                            _order.DeliveryCost = finded.DeliveryCost;
-                            _order.Date = finded.Date;
-                            _order.Recipient = finded.Recipient;
-                            _order.RecipientAddress = finded.RecipientAddress;
-                            _order.RecipientCity = finded.RecipientCity;
-                            _order.RecipientCountry = finded.RecipientCountry;
-                            break;
-                        }
-                    case DataType.Suppliers:
-                        {
-                            Supplier finded = null;
-                            if (_supplier.Id == 0)
-                            {
-                                finded = db.Suppliers.First();
-                            }
-                            else
-                            {
-                                 finded = db.Suppliers.ToList().SkipWhile(t => t.Id != _supplier.Id).Skip(1).Take(1).Single();
-                            }
-                            _supplier.Id = finded.Id;
-                            _supplier.Name = finded.Name;
-                            _supplier.Address = finded.Address;
-                            _supplier.Country = finded.Country;
-                            _supplier.Representative = finded.Representative;
-                            _supplier.City = finded.City;
-                            _supplier.TelephoneNumber = finded.TelephoneNumber;
-                            break;
-                        }
-                    default:
-                        {
-                            throw new ArgumentOutOfRangeException();
-                        }
+                    }
+                    _orderVM.Id = finded.Id;
+                    _orderVM.Client = finded.Client;
+                    _orderVM.ClientId = finded.ClientId;
+                    _orderVM.Employee = finded.Employee;
+                    _orderVM.EmployeeId = finded.EmployeeId;
+                    _orderVM.DeliveryCost = finded.DeliveryCost;
+                    _orderVM.Date = finded.Date;
+                    _orderVM.Recipient = finded.Recipient;
+                    _orderVM.RecipientAddress = finded.RecipientAddress;
+                    _orderVM.RecipientCity = finded.RecipientCity;
+                    _orderVM.RecipientCountry = finded.RecipientCountry;
+                    break;
+                }
+                case DataType.Suppliers:
+                {
+                    Supplier finded = null;
+                    if (_supplierVM.Id == 0)
+                    {
+                        finded = _db.Suppliers.First();
+                    }
+                    else
+                    {
+                        finded = _db.Suppliers.ToList().SkipWhile(t => t.Id != _supplierVM.Id).Skip(1).Take(1).Single();
+                    }
+                    _supplierVM.Id = finded.Id;
+                    _supplierVM.Name = finded.Name;
+                    _supplierVM.Address = finded.Address;
+                    _supplierVM.Country = finded.Country;
+                    _supplierVM.Representative = finded.Representative;
+                    _supplierVM.City = finded.City;
+                    _supplierVM.TelephoneNumber = finded.TelephoneNumber;
+                    break;
+                }
+                default:
+                {
+                    throw new ArgumentOutOfRangeException();
                 }
             }
         }

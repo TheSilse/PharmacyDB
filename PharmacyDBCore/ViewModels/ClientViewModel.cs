@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using PharmacyDBCore.Commands;
 using PharmacyDBCore.Database.Models;
 
@@ -25,7 +26,10 @@ namespace PharmacyDBCore.ViewModels
         public int Id
         {
             get => _client.Id;
-            set { _client.Id = value; OnPropertyChanged(); }
+            set
+            {
+                _client.Id = value; OnPropertyChanged();
+            }
         }
 
         public string Name
