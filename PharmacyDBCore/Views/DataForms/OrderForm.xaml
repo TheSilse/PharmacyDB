@@ -37,8 +37,8 @@
         <Label Content="Id сотрудника" Width="100" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="217,251,217,70"/>
         <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,250,217,70" Text="{Binding EmployeeId }"/>
 
-        <Button Content="Next" Height="25" Width="49" Margin="267,281,218,40"  CommandParameter="Orders" Command="{Binding NextCommand}"/>
-        <Button Content="Prev" Height="25" Width="49" Margin="217,281,268,40"  CommandParameter="Orders" Command="{Binding PrevCommand}"/>
-        <Button Content="Save" Height="25" Width="100" Margin="217,311,217,10" CommandParameter="Orders" Command="{Binding SaveCommand}"/>
+        <Button Content="Вперед" Height="25" Width="49" Margin="267,281,218,40"  CommandParameter="Orders" Command="{Binding NextCommand}"/>
+        <Button Content="Назад" Height="25" Width="49" Margin="217,281,268,40"  CommandParameter="Orders" Command="{Binding PrevCommand}"/>
+        <Button Content="Сохранить" Height="25" Width="100" Margin="217,311,217,10" CommandParameter="Orders" Command="{Binding SaveCommand}"/>
     </Grid>
 </UserControl>

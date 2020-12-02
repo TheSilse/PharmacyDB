@@ -33,8 +33,8 @@
 
 
 
-        <Button Content="Next" Height="25" Width="49" Margin="269,220,216,100" CommandParameter="Suppliers" Command="{Binding NextCommand}" />
-        <Button Content="Prev" Height="25" Width="49" Margin="217,220,268,100" CommandParameter="Suppliers" Command="{Binding PrevCommand}" />
-        <Button Content="Save" Height="25" Width="100" Margin="217,250,217,70" CommandParameter="Suppliers" Command="{Binding SaveCommand}"/>
+        <Button Content="Вперед" Height="25" Width="49" Margin="269,220,216,100" CommandParameter="Suppliers" Command="{Binding NextCommand}" />
+        <Button Content="Назад" Height="25" Width="49" Margin="217,220,268,100" CommandParameter="Suppliers" Command="{Binding PrevCommand}" />
+        <Button Content="Сохранить" Height="25" Width="100" Margin="217,250,217,70" CommandParameter="Suppliers" Command="{Binding SaveCommand}"/>
     </Grid>
 </UserControl>

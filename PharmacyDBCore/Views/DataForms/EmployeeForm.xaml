@@ -31,8 +31,8 @@
         <Label Content="Зарплата" Height="25" Margin="239,190,235,131" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Width="100" Height="25" Opacity="0.75" Margin="218,190,216,131" Text="{Binding Salary }"/>
 
-        <Button Content="Next" Height="25" Width="49" Margin="269,220,216,101" CommandParameter="Employees" Command="{Binding NextCommand}" />
-        <Button Content="Prev" Height="25" Width="49" Margin="218,220,267,101"  CommandParameter="Employees" Command="{Binding PrevCommand}"/>
-        <Button Content="Save" Height="25" Width="100" Margin="218,250,216,71" CommandParameter="Employees" Command="{Binding SaveCommand}"/>
+        <Button Content="Вперед" Height="25" Width="49" Margin="269,220,216,101" CommandParameter="Employees" Command="{Binding NextCommand}" />
+        <Button Content="Назад" Height="25" Width="49" Margin="218,220,267,101"  CommandParameter="Employees" Command="{Binding PrevCommand}"/>
+        <Button Content="Сохранить" Height="25" Width="100" Margin="218,250,216,71" CommandParameter="Employees" Command="{Binding SaveCommand}"/>
     </Grid>
 </UserControl>
