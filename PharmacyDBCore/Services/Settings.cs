@@ -14,7 +14,6 @@ namespace PharmacyDBCore.Services
         static Settings()
         {
             Configuration = new Dictionary<string, string>();
-#if DEBUG
             if (!Directory.Exists(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Configs"))
             {
                 throw new Exception("Отсутствует дирректория - \"" + Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Configs\"");
@@ -43,14 +42,7 @@ namespace PharmacyDBCore.Services
             Dictionary<string, string> cfgLast = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonLast);
             foreach (KeyValuePair<string, string> item in cfgLast)
                 Configuration[item.Key] = item.Value;
-#else
-            string[] k = Environment.GetEnvironmentVariables().Keys.Cast<string>().ToArray();
-            string[] v = Environment.GetEnvironmentVariables().Values.Cast<string>().ToArray(); ;
-            Configuration = new Dictionary<string, string>();
-            for (int i = 0; i < k.Length; i++)
-                Configuration[k[i]] = v[i] ?? "";
 
-#endif
             ConnectionString = Configuration["connection_string"];
         }
     }
