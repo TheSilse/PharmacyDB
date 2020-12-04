@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using PharmacyDBCore.Database;
+﻿using PharmacyDBCore.Database;
 using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PharmacyDBCore.Commands
 {
@@ -26,17 +21,17 @@ namespace PharmacyDBCore.Commands
             _appVM = viewModel;
         }
 
-        public PrevCommand(ClientViewModel viewModel) 
+        public PrevCommand(ClientViewModel viewModel)
         {
             _clientVM = viewModel;
         }
 
-        public PrevCommand(DrugViewModel viewModel) 
+        public PrevCommand(DrugViewModel viewModel)
         {
             _drugVM = viewModel;
         }
 
-        public PrevCommand(EmployeeViewModel viewModel) 
+        public PrevCommand(EmployeeViewModel viewModel)
         {
             _employeeVM = viewModel;
         }
@@ -121,145 +116,145 @@ namespace PharmacyDBCore.Commands
         public override void Execute(object parameter)
         {
             DataType type = Enum.Parse<DataType>((string)parameter, true);
-             _db ??= new DatabaseContext();
+            _db ??= new DatabaseContext();
             switch (type)
             {
                 case DataType.Appointments:
-                {
-                    List<Appointment> list = _db.Appointments.ToList();
-                    Appointment finded = null;
-                    list.Reverse();
-                    if (list.First().Id < _appVM.Id)
                     {
-                        finded = list.First();
+                        List<Appointment> list = _db.Appointments.ToList();
+                        Appointment finded = null;
+                        list.Reverse();
+                        if (list.First().Id < _appVM.Id)
+                        {
+                            finded = list.First();
+                        }
+                        else
+                        {
+                            finded = list.SkipWhile(t => t.Id != _appVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _appVM.Id = finded.Id;
+                        _appVM.Group = finded.Group;
+                        _appVM.Description = finded.Description;
+                        break;
                     }
-                    else
-                    {
-                        finded = list.SkipWhile(t => t.Id != _appVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _appVM.Id = finded.Id;
-                    _appVM.Group = finded.Group;
-                    _appVM.Description = finded.Description;
-                    break;
-                }
                 case DataType.Clients:
-                {
-                    List<Client> list = _db.Clients.ToList();
-                    Client finded = null;
-                    list.Reverse();
-                    if (list.First().Id < _clientVM.Id)
                     {
-                        finded = list.First();
-                    }
-                    else
-                    {
-                        finded = list.SkipWhile(t => t.Id != _clientVM.Id).Skip(1).Take(1).Single();
-                    }
+                        List<Client> list = _db.Clients.ToList();
+                        Client finded = null;
+                        list.Reverse();
+                        if (list.First().Id < _clientVM.Id)
+                        {
+                            finded = list.First();
+                        }
+                        else
+                        {
+                            finded = list.SkipWhile(t => t.Id != _clientVM.Id).Skip(1).Take(1).Single();
+                        }
 
-                    _clientVM.Id = finded.Id;
-                    _clientVM.Name = finded.Name;
-                    _clientVM.Address = finded.Address;
-                    _clientVM.Telephone = finded.Telephone;
-                    _clientVM.Country = finded.Country;
-                    break;
-                }
+                        _clientVM.Id = finded.Id;
+                        _clientVM.Name = finded.Name;
+                        _clientVM.Address = finded.Address;
+                        _clientVM.Telephone = finded.Telephone;
+                        _clientVM.Country = finded.Country;
+                        break;
+                    }
                 case DataType.Drugs:
-                {
-                    List<Drug> list = _db.Drugs.ToList();
-                    Drug finded = null;
-                    list.Reverse();
-                    if (list.First().Id < _drugVM.Id)
                     {
-                        finded = list.First();
+                        List<Drug> list = _db.Drugs.ToList();
+                        Drug finded = null;
+                        list.Reverse();
+                        if (list.First().Id < _drugVM.Id)
+                        {
+                            finded = list.First();
+                        }
+                        else
+                        {
+                            finded = list.SkipWhile(t => t.Id != _drugVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _drugVM.Id = finded.Id;
+                        _drugVM.Name = finded.Name;
+                        _drugVM.Appointment = finded.Appointment;
+                        _drugVM.AppointmentId = finded.AppointmentId;
+                        _drugVM.Count = finded.Count;
+                        _drugVM.Price = finded.Price;
+                        _drugVM.Supplier = finded.Supplier;
+                        _drugVM.SupplierId = finded.SupplierId;
+                        break;
                     }
-                    else
-                    {
-                        finded = list.SkipWhile(t => t.Id != _drugVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _drugVM.Id = finded.Id;
-                    _drugVM.Name = finded.Name;
-                    _drugVM.Appointment = finded.Appointment;
-                    _drugVM.AppointmentId = finded.AppointmentId;
-                    _drugVM.Count = finded.Count;
-                    _drugVM.Price = finded.Price;
-                    _drugVM.Supplier = finded.Supplier;
-                    _drugVM.SupplierId = finded.SupplierId;
-                    break;
-                }
                 case DataType.Employees:
-                {
-                    List<Employee> list = _db.Employees.ToList();
-                    list.Reverse();
-                    Employee finded = null;
-                    if (list.First().Id < _employeeVM.Id)
                     {
-                        finded = list.First();
+                        List<Employee> list = _db.Employees.ToList();
+                        list.Reverse();
+                        Employee finded = null;
+                        if (list.First().Id < _employeeVM.Id)
+                        {
+                            finded = list.First();
+                        }
+                        else
+                        {
+                            finded = list.SkipWhile(t => t.Id != _employeeVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _employeeVM.Id = finded.Id;
+                        _employeeVM.Name = finded.Name;
+                        _employeeVM.MiddleName = finded.MiddleName;
+                        _employeeVM.Position = finded.Position;
+                        _employeeVM.Telephone = finded.Telephone;
+                        _employeeVM.SecondName = finded.SecondName;
+                        _employeeVM.Salary = finded.Salary;
+                        break;
                     }
-                    else
-                    {
-                        finded = list.SkipWhile(t => t.Id != _employeeVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _employeeVM.Id = finded.Id;
-                    _employeeVM.Name = finded.Name;
-                    _employeeVM.MiddleName = finded.MiddleName;
-                    _employeeVM.Position = finded.Position;
-                    _employeeVM.Telephone = finded.Telephone;
-                    _employeeVM.SecondName = finded.SecondName;
-                    _employeeVM.Salary = finded.Salary;
-                    break;
-                }
                 case DataType.Orders:
-                {
-                    List<Order> list = _db.Orders.ToList();
-                    list.Reverse();
-                    Order finded = null;
-                    if (list.First().Id < _orderVM.Id)
                     {
-                        finded = list.First();
+                        List<Order> list = _db.Orders.ToList();
+                        list.Reverse();
+                        Order finded = null;
+                        if (list.First().Id < _orderVM.Id)
+                        {
+                            finded = list.First();
+                        }
+                        else
+                        {
+                            finded = list.SkipWhile(t => t.Id != _orderVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _orderVM.Id = finded.Id;
+                        _orderVM.Client = finded.Client;
+                        _orderVM.ClientId = finded.ClientId;
+                        _orderVM.Employee = finded.Employee;
+                        _orderVM.EmployeeId = finded.EmployeeId;
+                        _orderVM.DeliveryCost = finded.DeliveryCost;
+                        _orderVM.Date = finded.Date;
+                        _orderVM.Recipient = finded.Recipient;
+                        _orderVM.RecipientAddress = finded.RecipientAddress;
+                        _orderVM.RecipientCity = finded.RecipientCity;
+                        _orderVM.RecipientCountry = finded.RecipientCountry;
+                        break;
                     }
-                    else
-                    {
-                        finded = list.SkipWhile(t => t.Id != _orderVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _orderVM.Id = finded.Id;
-                    _orderVM.Client = finded.Client;
-                    _orderVM.ClientId = finded.ClientId;
-                    _orderVM.Employee = finded.Employee;
-                    _orderVM.EmployeeId = finded.EmployeeId;
-                    _orderVM.DeliveryCost = finded.DeliveryCost;
-                    _orderVM.Date = finded.Date;
-                    _orderVM.Recipient = finded.Recipient;
-                    _orderVM.RecipientAddress = finded.RecipientAddress;
-                    _orderVM.RecipientCity = finded.RecipientCity;
-                    _orderVM.RecipientCountry = finded.RecipientCountry;
-                    break;
-                }
                 case DataType.Suppliers:
-                {
-                    List<Supplier> list = _db.Suppliers.ToList();
-                    list.Reverse();
-                    Supplier finded = null;
-                    if (list.First().Id < _supplierVM.Id)
                     {
-                        finded = list.First();
+                        List<Supplier> list = _db.Suppliers.ToList();
+                        list.Reverse();
+                        Supplier finded = null;
+                        if (list.First().Id < _supplierVM.Id)
+                        {
+                            finded = list.First();
+                        }
+                        else
+                        {
+                            finded = list.SkipWhile(t => t.Id != _supplierVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _supplierVM.Id = finded.Id;
+                        _supplierVM.Name = finded.Name;
+                        _supplierVM.Address = finded.Address;
+                        _supplierVM.Country = finded.Country;
+                        _supplierVM.Representative = finded.Representative;
+                        _supplierVM.City = finded.City;
+                        _supplierVM.TelephoneNumber = finded.TelephoneNumber;
+                        break;
                     }
-                    else
-                    {
-                        finded = list.SkipWhile(t => t.Id != _supplierVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _supplierVM.Id = finded.Id;
-                    _supplierVM.Name = finded.Name;
-                    _supplierVM.Address = finded.Address;
-                    _supplierVM.Country = finded.Country;
-                    _supplierVM.Representative = finded.Representative;
-                    _supplierVM.City = finded.City;
-                    _supplierVM.TelephoneNumber = finded.TelephoneNumber;
-                    break;
-                }
                 default:
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
             }
         }
     }

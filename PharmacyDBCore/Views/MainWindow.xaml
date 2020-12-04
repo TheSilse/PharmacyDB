@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:PharmacyDBCore.ViewModels"
         xmlns:dataForms="clr-namespace:PharmacyDBCore.Views.DataForms"
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="800"
+        Title="PharmacyDB" Height="470" Width="800"
         ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary Source="/Views/MyResources.xaml"></ResourceDictionary>
@@ -22,10 +22,10 @@
         <StackPanel Grid.Row="0">
             <Menu>
                 <MenuItem Header="Файл">
-                    <MenuItem Header="Выход"/>
+                    <MenuItem Header="Выход" Command="{Binding ExitCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Помощь">
-                    <MenuItem Header="О программе PharmacyDB"/>
+                    <MenuItem Header="О программе PharmacyDB" Command="{Binding ShowAboutCommand}"/>
                 </MenuItem>
             </Menu>
             <Separator/>

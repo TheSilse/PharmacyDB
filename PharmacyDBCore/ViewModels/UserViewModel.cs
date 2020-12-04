@@ -1,7 +1,4 @@
 ﻿using PharmacyDBCore.Commands;
-using PharmacyDBCore.Services;
-using System.Windows;
-using System.Windows.Input;
 
 namespace PharmacyDBCore.ViewModels
 {
@@ -32,5 +29,5 @@ namespace PharmacyDBCore.ViewModels
 
         public LoginCommand LoginCommand => new LoginCommand(this);
     }
-    
+
 }

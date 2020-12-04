@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PharmacyDBCore.Commands;
+﻿using PharmacyDBCore.Commands;
 using PharmacyDBCore.Database.Models;
 
 namespace PharmacyDBCore.ViewModels
@@ -16,7 +13,7 @@ namespace PharmacyDBCore.ViewModels
 
         public EmployeeViewModel()
         {
-            _employee??= new Employee();
+            _employee ??= new Employee();
         }
         public EmployeeViewModel(Employee employee)
         {

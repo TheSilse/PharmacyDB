@@ -10,13 +10,13 @@
         <viewModels:AppointmentViewModel></viewModels:AppointmentViewModel>
     </UserControl.DataContext>
     <Grid Width="661">
-        <Label Height="25" Width="21"  Content="Id" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="258,10,0,0"/>
+        <Label Height="25" Width="22"  Content="Id" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0"/>
         <TextBox Width="100" Height="25"  Text="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Top" Opacity="0.75" Margin="0,10,0,0"/>
 
-        <Label Height="25" Content="Группа" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="199,40,0,0" />
+        <Label Height="30" Content="Группа" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,40,0,0" />
         <TextBox Text="{Binding Group}" Opacity="0.745" Margin="247,40,246,258" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" />
 
-        <Label Content="Описание" Width="70" Height="25" Margin="172,93,419,228"/>
+        <Label Content="Описание" Width="70" Margin="171,93,420,225"/>
         <TextBox Text="{Binding Description, Mode=TwoWay}" Opacity="0.75" Margin="246,93,247,175" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" />
 
         <Button Content="Вперед" Height="25" Width="50" Margin="330,176,0,145" HorizontalAlignment="Left" CommandParameter="Appointments" Command="{Binding NextCommand}"  />

@@ -1,8 +1,6 @@
-﻿using PharmacyDBCore.ViewModels;
-
-namespace PharmacyDBCore.Database.Models
+﻿namespace PharmacyDBCore.Database.Models
 {
-    public class Supplier 
+    public class Supplier
     {
         public int Id { get; set; }
 
@@ -18,6 +16,6 @@ namespace PharmacyDBCore.Database.Models
 
         public string TelephoneNumber { get; set; }
 
-       
+
     }
 }

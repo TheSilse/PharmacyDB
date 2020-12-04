@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using PharmacyDBCore.Commands;
+﻿using PharmacyDBCore.Commands;
 using PharmacyDBCore.Database.Models;
 
 namespace PharmacyDBCore.ViewModels

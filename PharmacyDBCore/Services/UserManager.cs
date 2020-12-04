@@ -1,14 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using PharmacyDBCore.Database;
+using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Security.Policy;
 using System.Text;
-using System.Windows;
-using PharmacyDBCore.Database;
-using PharmacyDBCore.Database.Models;
 
 namespace PharmacyDBCore.Services
 {

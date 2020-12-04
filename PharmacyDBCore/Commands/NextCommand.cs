@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using PharmacyDBCore.Database;
+﻿using PharmacyDBCore.Database;
 using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.ViewModels;
+using System;
+using System.Linq;
 
 namespace PharmacyDBCore.Commands
 {
@@ -130,130 +123,130 @@ namespace PharmacyDBCore.Commands
             switch (type)
             {
                 case DataType.Appointments:
-                {
-                    Appointment finded = null;
-                    if (_appVM.Id == 0)
                     {
-                        finded = _db.Appointments.First();
+                        Appointment finded = null;
+                        if (_appVM.Id == 0)
+                        {
+                            finded = _db.Appointments.First();
+                        }
+                        else
+                        {
+                            finded = _db.Appointments.ToList().SkipWhile(t => t.Id != _appVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _appVM.Id = finded.Id;
+                        _appVM.Group = finded.Group;
+                        _appVM.Description = finded.Description;
+                        break;
                     }
-                    else
-                    {
-                        finded = _db.Appointments.ToList().SkipWhile(t => t.Id != _appVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _appVM.Id = finded.Id;
-                    _appVM.Group = finded.Group;
-                    _appVM.Description = finded.Description;
-                    break;
-                }
                 case DataType.Clients:
-                {
-                    Client finded = null;
-                    if (_clientVM.Id == 0)
                     {
-                        finded = _db.Clients.First();
-                    }
-                    else
-                    {
+                        Client finded = null;
+                        if (_clientVM.Id == 0)
+                        {
+                            finded = _db.Clients.First();
+                        }
+                        else
+                        {
 
-                        finded = _db.Clients.ToList().SkipWhile(t => t.Id != _clientVM.Id).Skip(1).Take(1).Single();
+                            finded = _db.Clients.ToList().SkipWhile(t => t.Id != _clientVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _clientVM.Id = finded.Id;
+                        _clientVM.Name = finded.Name;
+                        _clientVM.Address = finded.Address;
+                        _clientVM.Telephone = finded.Telephone;
+                        _clientVM.Country = finded.Country;
+                        break;
                     }
-                    _clientVM.Id = finded.Id;
-                    _clientVM.Name = finded.Name;
-                    _clientVM.Address = finded.Address;
-                    _clientVM.Telephone = finded.Telephone;
-                    _clientVM.Country = finded.Country;
-                    break;
-                }
                 case DataType.Drugs:
-                {
-                    Drug finded = null;
-                    if (_drugVM.Id == 0)
                     {
-                        finded = _db.Drugs.First();
+                        Drug finded = null;
+                        if (_drugVM.Id == 0)
+                        {
+                            finded = _db.Drugs.First();
+                        }
+                        else
+                        {
+                            finded = _db.Drugs.ToList().SkipWhile(t => t.Id != _drugVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _drugVM.Id = finded.Id;
+                        _drugVM.Name = finded.Name;
+                        _drugVM.Appointment = finded.Appointment;
+                        _drugVM.AppointmentId = finded.AppointmentId;
+                        _drugVM.Count = finded.Count;
+                        _drugVM.Price = finded.Price;
+                        _drugVM.Supplier = finded.Supplier;
+                        _drugVM.SupplierId = finded.SupplierId;
+                        break;
                     }
-                    else
-                    {
-                        finded = _db.Drugs.ToList().SkipWhile(t => t.Id != _drugVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _drugVM.Id = finded.Id;
-                    _drugVM.Name = finded.Name;
-                    _drugVM.Appointment = finded.Appointment;
-                    _drugVM.AppointmentId = finded.AppointmentId;
-                    _drugVM.Count = finded.Count;
-                    _drugVM.Price = finded.Price;
-                    _drugVM.Supplier = finded.Supplier;
-                    _drugVM.SupplierId = finded.SupplierId;
-                    break;
-                }
                 case DataType.Employees:
-                {
-                    Employee finded = null;
-                    if (_employeeVM.Id == 0)
                     {
-                        finded = _db.Employees.First();
+                        Employee finded = null;
+                        if (_employeeVM.Id == 0)
+                        {
+                            finded = _db.Employees.First();
+                        }
+                        else
+                        {
+                            finded = _db.Employees.ToList().SkipWhile(t => t.Id != _employeeVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _employeeVM.Id = finded.Id;
+                        _employeeVM.Name = finded.Name;
+                        _employeeVM.MiddleName = finded.MiddleName;
+                        _employeeVM.Position = finded.Position;
+                        _employeeVM.Telephone = finded.Telephone;
+                        _employeeVM.SecondName = finded.SecondName;
+                        _employeeVM.Salary = finded.Salary;
+                        break;
                     }
-                    else
-                    {
-                        finded = _db.Employees.ToList().SkipWhile(t => t.Id != _employeeVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _employeeVM.Id = finded.Id;
-                    _employeeVM.Name = finded.Name;
-                    _employeeVM.MiddleName = finded.MiddleName;
-                    _employeeVM.Position = finded.Position;
-                    _employeeVM.Telephone = finded.Telephone;
-                    _employeeVM.SecondName = finded.SecondName;
-                    _employeeVM.Salary = finded.Salary;
-                    break;
-                }
                 case DataType.Orders:
-                {
-                    Order finded = null;
-                    if (_orderVM.Id == 0)
                     {
-                        finded = _db.Orders.First();
-                    }
-                    else
-                    {
-                        finded = _db.Orders.ToList().SkipWhile(t => t.Id != _orderVM.Id).Skip(1).Take(1).Single();
+                        Order finded = null;
+                        if (_orderVM.Id == 0)
+                        {
+                            finded = _db.Orders.First();
+                        }
+                        else
+                        {
+                            finded = _db.Orders.ToList().SkipWhile(t => t.Id != _orderVM.Id).Skip(1).Take(1).Single();
 
+                        }
+                        _orderVM.Id = finded.Id;
+                        _orderVM.Client = finded.Client;
+                        _orderVM.ClientId = finded.ClientId;
+                        _orderVM.Employee = finded.Employee;
+                        _orderVM.EmployeeId = finded.EmployeeId;
+                        _orderVM.DeliveryCost = finded.DeliveryCost;
+                        _orderVM.Date = finded.Date;
+                        _orderVM.Recipient = finded.Recipient;
+                        _orderVM.RecipientAddress = finded.RecipientAddress;
+                        _orderVM.RecipientCity = finded.RecipientCity;
+                        _orderVM.RecipientCountry = finded.RecipientCountry;
+                        break;
                     }
-                    _orderVM.Id = finded.Id;
-                    _orderVM.Client = finded.Client;
-                    _orderVM.ClientId = finded.ClientId;
-                    _orderVM.Employee = finded.Employee;
-                    _orderVM.EmployeeId = finded.EmployeeId;
-                    _orderVM.DeliveryCost = finded.DeliveryCost;
-                    _orderVM.Date = finded.Date;
-                    _orderVM.Recipient = finded.Recipient;
-                    _orderVM.RecipientAddress = finded.RecipientAddress;
-                    _orderVM.RecipientCity = finded.RecipientCity;
-                    _orderVM.RecipientCountry = finded.RecipientCountry;
-                    break;
-                }
                 case DataType.Suppliers:
-                {
-                    Supplier finded = null;
-                    if (_supplierVM.Id == 0)
                     {
-                        finded = _db.Suppliers.First();
+                        Supplier finded = null;
+                        if (_supplierVM.Id == 0)
+                        {
+                            finded = _db.Suppliers.First();
+                        }
+                        else
+                        {
+                            finded = _db.Suppliers.ToList().SkipWhile(t => t.Id != _supplierVM.Id).Skip(1).Take(1).Single();
+                        }
+                        _supplierVM.Id = finded.Id;
+                        _supplierVM.Name = finded.Name;
+                        _supplierVM.Address = finded.Address;
+                        _supplierVM.Country = finded.Country;
+                        _supplierVM.Representative = finded.Representative;
+                        _supplierVM.City = finded.City;
+                        _supplierVM.TelephoneNumber = finded.TelephoneNumber;
+                        break;
                     }
-                    else
-                    {
-                        finded = _db.Suppliers.ToList().SkipWhile(t => t.Id != _supplierVM.Id).Skip(1).Take(1).Single();
-                    }
-                    _supplierVM.Id = finded.Id;
-                    _supplierVM.Name = finded.Name;
-                    _supplierVM.Address = finded.Address;
-                    _supplierVM.Country = finded.Country;
-                    _supplierVM.Representative = finded.Representative;
-                    _supplierVM.City = finded.City;
-                    _supplierVM.TelephoneNumber = finded.TelephoneNumber;
-                    break;
-                }
                 default:
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
             }
         }
     }

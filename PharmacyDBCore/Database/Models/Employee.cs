@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-using PharmacyDBCore.ViewModels;
-
-namespace PharmacyDBCore.Database.Models
+﻿namespace PharmacyDBCore.Database.Models
 {
-    public class Employee 
+    public class Employee
     {
         public int Id { get; set; }
 
@@ -19,6 +16,6 @@ namespace PharmacyDBCore.Database.Models
 
         public decimal Salary { get; set; }
 
-        
+
     }
 }

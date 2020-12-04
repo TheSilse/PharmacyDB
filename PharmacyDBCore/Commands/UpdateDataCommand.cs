@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PharmacyDBCore.Database;
+using PharmacyDBCore.Database.Models;
+using PharmacyDBCore.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using PharmacyDBCore.Database;
-using PharmacyDBCore.Database.Models;
-using PharmacyDBCore.ViewModels;
+using System.Windows;
+using PharmacyDBCore.Views;
 
 namespace PharmacyDBCore.Commands
 {
@@ -28,33 +29,43 @@ namespace PharmacyDBCore.Commands
                 switch (_tablesViewModel.DataType)
                 {
                     case DataType.Appointments:
-                    {
-                        List<Appointment> apps = db.Appointments.ToList();
-                        _tablesViewModel.DataGrid.ItemsSource = new BindingList<Appointment>(apps);
-                        
-                        break;
-                    }
+                        {
+                            List<Appointment> apps = db.Appointments.ToList();
+                            ((MainWindow)Application.Current.MainWindow).dataGrid.ItemsSource = new BindingList<Appointment>(apps);
+
+                            break;
+                        }
                     case DataType.Clients:
-                    {
-                        break;
-                    }
+                        {
+                            List<Client> clients = db.Clients.ToList();
+                            ((MainWindow)Application.Current.MainWindow).dataGrid.ItemsSource = new BindingList<Client>(clients);
+                            break;
+                        }
                     case DataType.Drugs:
-                    {
-                        break;
-                    }
+                        {
+                            List<Drug> drugs = db.Drugs.ToList();
+                            ((MainWindow)Application.Current.MainWindow).dataGrid.ItemsSource = new BindingList<Drug>(drugs);
+                            break;
+                        }
                     case DataType.Employees:
-                    {
-                        break;
-                    }
+                        {
+                            List<Employee> employees = db.Employees.ToList();
+                            ((MainWindow)Application.Current.MainWindow).dataGrid.ItemsSource = new BindingList<Employee>(employees);
+                            break;
+                        }
                     case DataType.Orders:
-                    {
-                        break;
-                    }
+                        {
+                            List<Order> orders = db.Orders.ToList();
+                            ((MainWindow)Application.Current.MainWindow).dataGrid.ItemsSource = new BindingList<Order>(orders);
+                            break;
+                        }
                     case DataType.Suppliers:
-                    {
-                        break;
-                    }
-                
+                        {
+                            List<Supplier> suppliers = db.Suppliers.ToList();
+                            ((MainWindow)Application.Current.MainWindow).dataGrid.ItemsSource = new BindingList<Supplier>(suppliers);
+                            break;
+                        }
+
                 }
             }
         }

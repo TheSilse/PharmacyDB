@@ -1,0 +1,24 @@
+﻿<Window x:Class="PharmacyDBCore.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PharmacyDBCore.Views"
+        mc:Ignorable="d"
+        Title="О PharmacyDB" Height="300" Width="400"
+        ResizeMode="NoResize"
+        >
+    <Grid Margin="20,21,20,20">
+        <TabControl Margin="0,13,0,50">
+            <TabItem Header="Информация" IsSelected="True" Margin="-1,-2,-2,0">
+                <StackPanel Margin="5,5,5,5" Height="206.08">
+                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="17" TextWrapping="Wrap">
+                PharmacyDB - является менеджером Postgres базы данных. В частности нацелен на работу в фармацептических предприятиях.
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap"  FontSize="10" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch">Silse Software ©, Inc. 2018-2020. Все права защищены.</TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

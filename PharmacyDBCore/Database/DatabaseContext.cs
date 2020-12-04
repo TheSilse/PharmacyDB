@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.Services;
 
@@ -17,12 +16,13 @@ namespace PharmacyDBCore.Database
         public DatabaseContext()
         {
             Database.EnsureCreated();
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(Settings.ConnectionString);
         }
-        
+
     }
 }

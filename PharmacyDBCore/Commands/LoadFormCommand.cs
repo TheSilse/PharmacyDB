@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using PharmacyDBCore.Database.Models;
+﻿using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.ViewModels;
 using PharmacyDBCore.Views;
 using PharmacyDBCore.Views.DataForms;
+using System;
+using System.Windows;
 
 namespace PharmacyDBCore.Commands
 {
@@ -35,7 +33,7 @@ namespace PharmacyDBCore.Commands
                 case DataType.Appointments:
                     {
                         ((MainWindow)(Application.Current.MainWindow)).FormGrid.Children.Add(new AppointmentForm());
-                        
+
                         break;
                     }
                 case DataType.Clients:

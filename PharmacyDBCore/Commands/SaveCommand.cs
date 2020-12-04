@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using PharmacyDBCore.Database;
+﻿using PharmacyDBCore.Database;
 using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.ViewModels;
+using System;
+using System.Windows;
 
 namespace PharmacyDBCore.Commands
 {

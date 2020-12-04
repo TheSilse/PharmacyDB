@@ -42,6 +42,20 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            int height = 0;
+            height = int.Parse(Console.ReadLine());
+            for (int i = height - 1; i >= 0; i--)
+            {
+                for (int j = height - 1; j >= 0; j--)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void GetStringsCount()
+        {
             string path = @"E:\Projects CSharp\Online Content Bot\src";
 
             IEnumerable<string> xamls = Directory.GetFiles(path, "*.xaml", SearchOption.AllDirectories).Distinct();
@@ -75,12 +89,10 @@ namespace ConsoleApp1
                     }
                 }
             }
-            
+
             Console.WriteLine(cs.Count());
             Console.WriteLine(xamls.Count());
             Console.WriteLine($"Проект имеет {count} строк");
         }
-
-        
     }
 }

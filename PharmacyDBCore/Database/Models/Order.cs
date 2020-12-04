@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using PharmacyDBCore.ViewModels;
-
-namespace PharmacyDBCore.Database.Models
+﻿namespace PharmacyDBCore.Database.Models
 {
     public class Order
     {

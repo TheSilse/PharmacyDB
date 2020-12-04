@@ -1,16 +1,12 @@
-﻿using PharmacyDBCore.ViewModels;
+﻿using PharmacyDBCore.Database;
+using PharmacyDBCore.Database.Models;
+using PharmacyDBCore.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Linq;
-using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Windows.Data;
 using System.ComponentModel;
-using PharmacyDBCore.Database;
-using PharmacyDBCore.Database.Models;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 using PharmacyDBCore.Views;
 
 namespace PharmacyDBCore.Commands
@@ -21,7 +17,7 @@ namespace PharmacyDBCore.Commands
         public LoadDataCommand(MainWindowViewModel window)
         {
             _window = window;
-            
+
         }
         public override bool CanExecute(object parameter)
         {
@@ -36,16 +32,16 @@ namespace PharmacyDBCore.Commands
         {
             _window.ItemsSource = new BindingList<T>(sourceItems);
             BindingList<T> bindingList = (BindingList<T>)_window.ItemsSource;
-            _window.DataGrid.ItemsSource = bindingList;
+            ((MainWindow)Application.Current.MainWindow).dataGrid.ItemsSource = bindingList;
             ((BindingList<T>)_window.ItemsSource).ListChanged += MainWindowViewModel_ListChanged;
-            
+
 
         }
         public void LoadDataGrid(string tableName)
         {
             _window.DataType = Enum.Parse<DataType>(tableName, true);
-            _window.DataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
-            _window.DataGrid.SelectionChanged += DataGrid_SelectionChanged;
+            ((MainWindow)Application.Current.MainWindow).dataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
+            ((MainWindow)Application.Current.MainWindow).dataGrid.SelectionChanged += DataGrid_SelectionChanged;
             try
             {
                 using (DatabaseContext db = new DatabaseContext())
@@ -105,7 +101,7 @@ namespace PharmacyDBCore.Commands
                 e.Column.Header.ToString() == "User" ||
                 e.Column.Header.ToString() == "Employee" ||
                 e.Column.Header.ToString() == "Client")
-                
+
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
@@ -135,7 +131,7 @@ namespace PharmacyDBCore.Commands
                                 {
                                     BindingList<AppointmentViewModel> list = (BindingList<AppointmentViewModel>)sender;
                                     Appointment newItem = list.ToList().Last().GetAppointment();
-                                    newItem.Id = list.Count;
+                                    newItem.Id = list.Max(t=>t.Id) + 1;
                                     db.Appointments.Add(newItem);
                                 }
                                 else if (deleted)
@@ -154,7 +150,7 @@ namespace PharmacyDBCore.Commands
                                 {
                                     BindingList<ClientViewModel> list = (BindingList<ClientViewModel>)sender;
                                     Client newItem = list.ToList().Last().GetClient();
-                                    newItem.Id = list.Count;
+                                    newItem.Id = list.Max(t => t.Id) + 1;
                                     db.Clients.Add(newItem);
                                 }
                                 else if (deleted)
@@ -173,7 +169,7 @@ namespace PharmacyDBCore.Commands
                                 {
                                     BindingList<DrugViewModel> list = (BindingList<DrugViewModel>)sender;
                                     Drug newItem = list.ToList().Last().GetDrug();
-                                    newItem.Id = list.Count;
+                                    newItem.Id = list.Max(t => t.Id) + 1;
                                     db.Drugs.Add(newItem);
                                 }
                                 else if (deleted)
@@ -192,7 +188,7 @@ namespace PharmacyDBCore.Commands
                                 {
                                     BindingList<EmployeeViewModel> list = (BindingList<EmployeeViewModel>)sender;
                                     Employee newItem = list.ToList().Last().GetEmployee();
-                                    newItem.Id = list.Count;
+                                    newItem.Id = list.Max(t => t.Id) + 1;
                                     db.Employees.Add(newItem);
                                 }
                                 else if (deleted)
@@ -211,7 +207,7 @@ namespace PharmacyDBCore.Commands
                                 {
                                     BindingList<OrderViewModel> list = (BindingList<OrderViewModel>)sender;
                                     Order newItem = list.ToList().Last().GetOrder();
-                                    newItem.Id = list.Count;
+                                    newItem.Id = list.Max(t => t.Id) + 1;
                                     db.Orders.Add(newItem);
                                 }
                                 else if (deleted)
@@ -230,7 +226,7 @@ namespace PharmacyDBCore.Commands
                                 {
                                     BindingList<SupplierViewModel> list = (BindingList<SupplierViewModel>)sender;
                                     Supplier newItem = list.ToList().Last().GetSupplier();
-                                    newItem.Id = list.Count;
+                                    newItem.Id = list.Max(t => t.Id) + 1;
                                     db.Suppliers.Add(newItem);
                                 }
                                 else if (deleted)

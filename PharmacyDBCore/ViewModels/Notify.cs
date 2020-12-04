@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace PharmacyDBCore.ViewModels
 {
@@ -13,6 +10,6 @@ namespace PharmacyDBCore.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
-        
+
     }
 }

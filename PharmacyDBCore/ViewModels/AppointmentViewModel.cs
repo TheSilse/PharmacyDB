@@ -1,8 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
-using PharmacyDBCore.Database;
+﻿using PharmacyDBCore.Commands;
 using PharmacyDBCore.Database.Models;
-using System.Linq;
-using PharmacyDBCore.Commands;
 
 namespace PharmacyDBCore.ViewModels
 {
@@ -44,7 +41,7 @@ namespace PharmacyDBCore.ViewModels
             get => _appointment.Description;
             set { _appointment.Description = value; OnPropertyChanged(); }
         }
-       
-        
+
+
     }
 }

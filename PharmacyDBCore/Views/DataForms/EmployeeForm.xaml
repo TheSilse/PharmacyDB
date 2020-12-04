@@ -22,7 +22,7 @@
         <Label Content="Отчество" Width="96" Height="25" Margin="0,100,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <TextBox Width="100" Height="25" Opacity="0.75" Margin="217,100,217,221" Text="{Binding MiddleName }"/>
 
-        <Label Content="Должность" Height="25" Margin="236,130,236,191" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="Должность" Height="25" Margin="219,130,219,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
         <TextBox Width="100" Height="25" Opacity="0.75" Margin="218,130,216,191" Text="{Binding Position }"/>
 
         <Label Content="Телефон" Height="25" Margin="234,160,231,161" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>

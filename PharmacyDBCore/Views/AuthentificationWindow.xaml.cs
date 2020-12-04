@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using PharmacyDBCore.Services;
 
 namespace PharmacyDBCore.Views
 {
@@ -16,8 +17,9 @@ namespace PharmacyDBCore.Views
             Logo.Source = new BitmapImage(new Uri(Environment.CurrentDirectory +
                           Path.DirectorySeparatorChar +
                           "Images" + Path.DirectorySeparatorChar +
-                          "icon.png"));
+                          "logo.png"));
+            DbInitializer.Init();
         }
-        
+
     }
 }

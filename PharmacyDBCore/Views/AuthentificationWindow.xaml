@@ -21,17 +21,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" FontStyle="Normal" FontFamily="Segoe UI" >PharmacyDB</Label>
-        <Image x:Name="Logo" Source="Images/icon.png"  Grid.Row="1" Margin="20,30,20,30" HorizontalAlignment="Center" VerticalAlignment="Center" StretchDirection="DownOnly"/>
+        <Image x:Name="Logo" Source="Images/logo.png"  Grid.Row="1" Margin="20,30,20,30" HorizontalAlignment="Center" VerticalAlignment="Center" StretchDirection="DownOnly"/>
         <StackPanel Grid.Row="2">
-            <Label Content="Login" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Grid.Row="2" Margin="30,0,30,0"  />
+            <Label Content="Логин" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="30" Grid.Row="2" Margin="30,0,30,0"  />
             <TextBox Height="25" x:Name="Login"  Grid.Row="2" Margin="30,0,30,0" HorizontalAlignment="Stretch" Opacity="1" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <StackPanel Grid.Row="3">
-            <Label Content="Password" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Grid.Row="3" Margin="30,0,30,0"/>
+            <Label Content="Пароль" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Grid.Row="3" Margin="30,0,30,0"/>
             <TextBox x:Name="Password"  Height="25"  Grid.Row="5" HorizontalAlignment="Stretch" Margin="30,0,30,0" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
-        <Button Content="Authorization" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="91" Height="35" Grid.Row="6" Margin="0,10,0,10" Command="{Binding LoginCommand}" />
+        <Button Content="Авторизация" IsDefault="True" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="91" Height="35" Grid.Row="6" Margin="0,10,0,10" Command="{Binding LoginCommand}" />
     </Grid>
 
 </Window>

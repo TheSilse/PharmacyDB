@@ -1,12 +1,8 @@
 ﻿using PharmacyDBCore.Services;
 using PharmacyDBCore.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Input;
 using PharmacyDBCore.Views;
+using System;
+using System.Windows;
 
 namespace PharmacyDBCore.Commands
 {
@@ -35,9 +31,8 @@ namespace PharmacyDBCore.Commands
             bool successAuth = UserManager.LoginUser(_userViewModel);
             if (successAuth)
             {
-                Window authWin = (Application.Current).MainWindow;
-                MainWindow mainWindow = new MainWindow();
-                Application.Current.MainWindow = mainWindow;
+                Window authWin = Application.Current.MainWindow;
+                Application.Current.MainWindow = new MainWindow();
                 Application.Current.MainWindow.Show();
                 authWin.Close();
                 GC.SuppressFinalize(this);
