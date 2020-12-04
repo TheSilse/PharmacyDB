@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Windows;
+using Microsoft.EntityFrameworkCore;
 using PharmacyDBCore.Database.Models;
 using PharmacyDBCore.Services;
 
@@ -21,7 +23,15 @@ namespace PharmacyDBCore.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(Settings.ConnectionString);
+            try
+            {
+                optionsBuilder.UseNpgsql(Settings.ConnectionString);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.InnerException.Message);
+                throw;
+            }
         }
 
     }
